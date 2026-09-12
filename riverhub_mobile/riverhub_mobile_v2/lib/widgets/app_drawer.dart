@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:riverhub_mobile_v2/theme/app_colors.dart';
+import 'package:viabarcazas_mobile/theme/app_colors.dart';
 import '../main.dart';
 import '../services/locale_service.dart';
 // Existing screens

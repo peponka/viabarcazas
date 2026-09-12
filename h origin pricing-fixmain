@@ -1,0 +1,39 @@
+[33mcommit 84df1d3c5e0b11f078dab42a8407569d735f09af[m[33m ([m[1;32mpricing-fix[m[33m)[m
+Author: Claude <noreply@anthropic.com>
+Date:   Wed Sep 2 11:19:58 2026 +0000
+
+    fix: unifica precios a la escala 120/110/100/92/85 y arregla checkout falso
+    
+    - config/pricing.js: escala corregida (100/95/90/85/80/75 ->
+      120/110/100/92/85), tramo 150+ ahora abierto (customQuote)
+      en vez de un tramo fijo 150-150 que solo matcheaba esa cantidad
+      exacta.
+    - tests/pricing.test.js: asserts actualizados a la escala nueva,
+      agregado test del limite 150+ (el bug original). Verificado con
+      npm run test:pricing: 4/4 OK.
+    - tests/e2e/smoke.spec.js: ajusta la cantidad esperada de planes
+      en /api/pricing de 6 a 5 tras sacar el tramo fijo.
+    - public/pricing.html: escala nueva; saca el texto de "conjunto
+      barcaza+remolcador = una unidad" (cada uno es su propia unidad);
+      reemplaza el modal de "contratacion simulada" por un mailto con
+      el resumen de la seleccion; agrega seccion de combos de precio
+      fijo (5/10/25 unidades a la tarifa del tramo siguiente).
+    - public/index.html, index-en.html, index-pt.html: la calculadora
+      ROI ahora usa la escala real por tramo en vez de un modelo plano
+      desconectado ($179/$549 fijos); JSON-LD actualizado
+      (lowPrice/highPrice/offerCount).
+    - public/viabarcazas.html: numeros de #view-planes corregidos a la
+      escala nueva.
+    - public/viabarcazas-en.html: #view-planes reemplazado por el
+      equivalente en ingles de las tarjetas ya arregladas en espanol
+      (los botones viejos llamaban a selectPlan() con claves que no
+      existian en planPrices y tiraban un error de JS).
+    - public/viabarcazas-en.js: elimina las funciones muertas
+      planNames/planPrices/selectPlan/processPayment/togglePeriod.
+    
+    No toca routes/paymentRoutes.js, app.js, ni
+    public/js/modules/billing.js. No toca sidebar, estados vacios,
+    mayusculas ni duplicacion.
+    
+    Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+    Claude-Session: https://claude.ai/code/session_017RyJH5tMWE9392ees46oSq

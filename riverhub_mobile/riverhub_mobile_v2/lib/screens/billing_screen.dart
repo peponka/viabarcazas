@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_colors.dart';
 import '../main.dart';
 import '../services/locale_service.dart';
@@ -15,77 +15,105 @@ class BillingScreen extends StatefulWidget {
 class _BillingScreenState extends State<BillingScreen> {
   bool _isAnnual = false;
   String _currentPlan = 'fleet-25'; // default selected
-  bool _processing = false;
 
+  // Tramos por unidad — deben coincidir siempre con config/pricing.js
+  // (fuente unica de verdad del backend). Cada barcaza y cada remolcador
+  // es su propia unidad facturable; no existe el concepto de "combo/set".
   final List<Map<String, dynamic>> _plans = [
     {
-      'id': 'individual', 'name': 'Unidad Individual', 'desc': 'Hasta 1 embarcacion facturable',
-      'monthly': 115, 'yearly': 103.5, 'unit': '/mes', 'unitYearly': '/mes',
+      'id': 'starter', 'name': 'Precio inicial', 'desc': 'De 1 a 9 unidades facturables',
+      'monthly': 120, 'yearly': 108.0, 'unit': '/unidad/mes', 'unitYearly': '/unidad/mes',
       'icon': '🚢',
       'popular': false,
       'features': [
-        {'name': LocaleService.t('dyn_key_32'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_51'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_43'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_22'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_38'), 'enabled': false},
-        {'name': 'API Integraciones', 'enabled': false},
+        {'name': 'Tracking GPS en tiempo real', 'enabled': true},
+        {'name': 'Bitácora digital', 'enabled': true},
+        {'name': 'Mantenimiento preventivo', 'enabled': true},
+        {'name': 'Soporte estándar', 'enabled': true},
       ],
     },
     {
-      'id': 'fleet-10', 'name': 'Combo Flota 10', 'desc': 'Hasta 10 embarcaciones facturables',
-      'monthly': 1100, 'yearly': 990, 'unit': '/mes', 'unitYearly': '/mes',
+      'id': 'fleet-10', 'name': 'Flota 10+', 'desc': 'De 10 a 24 unidades facturables',
+      'monthly': 110, 'yearly': 99.0, 'unit': '/unidad/mes', 'unitYearly': '/unidad/mes',
       'icon': '⚓',
-      'popular': true,
-      'features': [
-        {'name': LocaleService.t('dyn_key_36'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_30'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_21'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_54'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_27'), 'enabled': true},
-        {'name': 'API Integraciones', 'enabled': false},
-      ],
-    },
-    {
-      'id': 'fleet-25', 'name': 'Combo Flota 25', 'desc': 'Hasta 25 embarcaciones facturables',
-      'monthly': 2500, 'yearly': 2250, 'unit': '/mes', 'unitYearly': '/mes',
-      'icon': '🏢',
       'popular': false,
       'features': [
-        {'name': LocaleService.t('dyn_key_49'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_44'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_34'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_28'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_48'), 'enabled': true},
-        {'name': 'SLA 99.9%', 'enabled': true},
+        {'name': 'Todo lo de Precio Inicial', 'enabled': true},
+        {'name': 'Gestión de tripulación', 'enabled': true},
+        {'name': 'Armador de convoyes', 'enabled': true},
+        {'name': 'Copiloto IA básico', 'enabled': true},
       ],
     },
     {
-      'id': 'fleet-50', 'name': 'Combo Flota 50', 'desc': 'Hasta 50 embarcaciones facturables',
-      'monthly': 4750, 'yearly': 4275, 'unit': '/mes', 'unitYearly': '/mes',
+      'id': 'fleet-25', 'name': 'Flota 25+', 'desc': 'De 25 a 49 unidades facturables',
+      'monthly': 100, 'yearly': 90.0, 'unit': '/unidad/mes', 'unitYearly': '/unidad/mes',
+      'icon': '🏢',
+      'popular': true,
+      'features': [
+        {'name': 'Todo lo de Flota 10+', 'enabled': true},
+        {'name': 'Copiloto IA avanzado', 'enabled': true},
+        {'name': 'Reportes avanzados', 'enabled': true},
+        {'name': 'Soporte prioritario', 'enabled': true},
+      ],
+    },
+    {
+      'id': 'fleet-50', 'name': 'Flota 50+', 'desc': 'De 50 a 99 unidades facturables',
+      'monthly': 92, 'yearly': 82.8, 'unit': '/unidad/mes', 'unitYearly': '/unidad/mes',
       'icon': '∞',
       'popular': false,
       'features': [
-        {'name': LocaleService.t('dyn_key_25'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_23'), 'enabled': true},
-        {'name': LocaleService.t('dyn_key_45'), 'enabled': true},
-        {'name': 'White-label disponible', 'enabled': true},
-        {'name': LocaleService.t('dyn_key_29'), 'enabled': true},
+        {'name': 'Todo lo de Flota 25+', 'enabled': true},
+        {'name': 'Usuarios ilimitados', 'enabled': true},
+        {'name': 'Copiloto IA premium', 'enabled': true},
+        {'name': 'Onboarding dedicado', 'enabled': true},
+      ],
+    },
+    {
+      'id': 'fleet-100', 'name': 'Flota 100+', 'desc': 'De 100 a 149 unidades facturables',
+      'monthly': 85, 'yearly': 76.5, 'unit': '/unidad/mes', 'unitYearly': '/unidad/mes',
+      'icon': '👑',
+      'popular': false,
+      'features': [
+        {'name': 'Todo lo de Flota 50+', 'enabled': true},
+        {'name': 'Embarcaciones ilimitadas', 'enabled': true},
+        {'name': 'API integraciones', 'enabled': true},
         {'name': 'Account manager', 'enabled': true},
       ],
     },
   ];
 
-  // Simulated payment history
-  final List<Map<String, String>> _payments = [
-    {'month': 'Abril 2026', 'amount': '\$2.500', 'status': LocaleService.t('dyn_key_41')},
-    {'month': 'Marzo 2026', 'amount': '\$2.500', 'status': LocaleService.t('dyn_key_35')},
-    {'month': 'Febrero 2026', 'amount': '\$2.500', 'status': LocaleService.t('dyn_key_35')},
-    {'month': 'Enero 2026', 'amount': '\$2.500', 'status': LocaleService.t('dyn_key_35')},
-  ];
-
   void _selectPlan(String planId) {
     setState(() => _currentPlan = planId);
+  }
+
+  // Abre el cliente de correo con una consulta comercial, igual que el
+  // boton "Solicitar propuesta por email" de pricing.html. No hay pago
+  // ni activacion simulada: la app nunca marca una suscripcion como
+  // activa sin que exista una transaccion real.
+  Future<void> _requestProposal() async {
+    final plan = _plans.firstWhere((p) => p['id'] == _currentPlan);
+    final price = _isAnnual ? plan['yearly'] : plan['monthly'];
+    final cycle = _isAnnual ? 'Prepago anual (-10%)' : 'Pago mensual';
+    final subject = Uri.encodeComponent(
+      'Consulta de plan ViaBarcazas - ${plan['name']} - USD $price/unidad/mes - $cycle',
+    );
+    final mailUri = Uri.parse('mailto:info@viabarcazas.com?subject=$subject');
+
+    Navigator.pop(context);
+
+    final launched = await launchUrl(mailUri);
+    if (!launched && mounted) {
+      showCupertinoDialog(
+        context: context,
+        builder: (dCtx) => CupertinoAlertDialog(
+          title: Text('No pudimos abrir tu app de correo', style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+          content: Text('Escribinos directamente a info@viabarcazas.com para recibir tu propuesta.', style: GoogleFonts.inter()),
+          actions: [
+            CupertinoDialogAction(child: Text('Entendido', style: GoogleFonts.inter(fontWeight: FontWeight.w600)), onPressed: () => Navigator.pop(dCtx)),
+          ],
+        ),
+      );
+    }
   }
 
   void _confirmSubscription() {
@@ -121,7 +149,7 @@ class _BillingScreenState extends State<BillingScreen> {
               child: Column(children: [
                 Text(plan['name'], style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
                 const SizedBox(height: 4),
-                Text('\$$price$unit', style: GoogleFonts.newsreader(fontSize: 28, fontWeight: FontWeight.w400, color: AppColors.textPrimary)),
+                Text('USD $price$unit', style: GoogleFonts.newsreader(fontSize: 28, fontWeight: FontWeight.w400, color: AppColors.textPrimary)),
                 if (_isAnnual) ...[
                   const SizedBox(height: 4),
                   Container(
@@ -132,78 +160,21 @@ class _BillingScreenState extends State<BillingScreen> {
                 ],
               ]),
             ),
-            const SizedBox(height: 16),
-
-            // Payment method
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.separator, width: 0.5),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(children: [
-                Icon(CupertinoIcons.creditcard, size: 20, color: AppColors.textPrimary),
-                const SizedBox(width: 12),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(LocaleService.t('billing_metodo_de_pago'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 0.5)),
-                  Text(LocaleService.t('billing_tarjeta_4242'), style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
-                ]),
-                const Spacer(),
-                Icon(CupertinoIcons.chevron_right, size: 16, color: AppColors.textSecondary),
-              ]),
-            ),
+            const SizedBox(height: 6),
+            Center(child: Text('Cada barcaza y remolcador cuenta como una unidad.', style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary))),
             const SizedBox(height: 24),
 
             GestureDetector(
-              onTap: () async {
-                Navigator.pop(ctx);
-                setState(() => _processing = true);
-
-                // Simulate payment processing
-                await Future.delayed(const Duration(seconds: 2));
-
-                // Save subscription to Supabase
-                try {
-                  final user = Supabase.instance.client.auth.currentUser;
-                  if (user != null) {
-                    await Supabase.instance.client.from('subscriptions').upsert({
-                      'user_id': user.id,
-                      'plan': _currentPlan,
-                      'billing_cycle': _isAnnual ? 'yearly' : 'monthly',
-                      'amount': price,
-                      'status': 'active',
-                      'started_at': DateTime.now().toIso8601String(),
-                    });
-                  }
-                } catch (e) {
-                  debugPrint('Subscription error: $e');
-                }
-
-                setState(() => _processing = false);
-
-                if (mounted) {
-                  showCupertinoDialog(
-                    context: context,
-                    builder: (dCtx) => CupertinoAlertDialog(
-                      title: Text(LocaleService.t('billing_suscripcion_activa'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
-                      content: Text('Tu plan ${plan['name']} está activo. ¡Gracias por elegirnos!', style: GoogleFonts.inter()),
-                      actions: [
-                        CupertinoDialogAction(child: Text(LocaleService.t('billing_aceptar'), style: GoogleFonts.inter(fontWeight: FontWeight.w600)), onPressed: () => Navigator.pop(dCtx)),
-                      ],
-                    ),
-                  );
-                }
-              },
+              onTap: _requestProposal,
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(color: AppColors.textPrimary, borderRadius: BorderRadius.circular(12)),
-                child: Center(child: Text(LocaleService.t('billing_confirmar_pago'), style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.backgroundPrimary, letterSpacing: 0.5))),
+                child: Center(child: Text('SOLICITAR PROPUESTA POR EMAIL', style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.backgroundPrimary, letterSpacing: 0.5))),
               ),
             ),
             const SizedBox(height: 8),
-            Text(LocaleService.t('billing_14_dias_de_prueba_gr'), style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary)),
+            Text('Te contactamos con una propuesta comercial. Más de 150 unidades: propuesta personalizada.', style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary), textAlign: TextAlign.center),
             const SizedBox(height: 8),
           ],
         ),
@@ -225,73 +196,57 @@ class _BillingScreenState extends State<BillingScreen> {
         middle: Text(LocaleService.t('billing_facturacion'), style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
       ),
       child: SafeArea(
-        child: _processing
-            ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
-                const CupertinoActivityIndicator(radius: 16),
-                const SizedBox(height: 16),
-                Text(LocaleService.t('billing_procesando_pago'), style: GoogleFonts.inter(fontSize: 14, color: AppColors.textSecondary)),
-              ]))
-            : ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                children: [
-                  Text(LocaleService.t('billing_planes'), style: GoogleFonts.newsreader(fontSize: 34, fontWeight: FontWeight.w400, color: AppColors.textPrimary, height: 1.1)),
-                  Text(LocaleService.t('billing_facturacion_1'), style: GoogleFonts.newsreader(fontSize: 34, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: AppColors.textPrimary, height: 1.1)),
-                  const SizedBox(height: 6),
-                  Text(LocaleService.t('billing_hidrovia_inteligente'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 1.5)),
-                  const SizedBox(height: 20),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          children: [
+            Text(LocaleService.t('billing_planes'), style: GoogleFonts.newsreader(fontSize: 34, fontWeight: FontWeight.w400, color: AppColors.textPrimary, height: 1.1)),
+            Text(LocaleService.t('billing_facturacion_1'), style: GoogleFonts.newsreader(fontSize: 34, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, color: AppColors.textPrimary, height: 1.1)),
+            const SizedBox(height: 6),
+            Text(LocaleService.t('billing_hidrovia_inteligente'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 1.5)),
+            const SizedBox(height: 20),
 
-                  // ── Period toggle ─────────────────────────────
-                  Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: AppColors.backgroundSecondary,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: AppColors.separator, width: 0.5),
-                    ),
-                    child: Row(children: [
-                      _toggleButton(LocaleService.t('dyn_key_55'), !_isAnnual, () => setState(() => _isAnnual = false)),
-                      _toggleButton('Prepago anual -10%', _isAnnual, () => setState(() => _isAnnual = true)),
-                    ]),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // ── Plans ─────────────────────────────────────
-                  ..._plans.map((plan) => _planCard(plan)),
-                  const SizedBox(height: 8),
-
-                  // ── Subscribe button ──────────────────────────
-                  GestureDetector(
-                    onTap: _confirmSubscription,
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      decoration: BoxDecoration(color: AppColors.textPrimary, borderRadius: BorderRadius.circular(12)),
-                      child: Center(child: Text('SOLICITAR PROPUESTA', style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.backgroundPrimary, letterSpacing: 0.5))),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Center(child: Text('Cada barcaza y remolcador cuenta como una unidad.', style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary))),
-                  const SizedBox(height: 32),
-
-                  // ── Payment History ────────────────────────────
-                  Row(children: [
-                    Text(LocaleService.t('billing_historial'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 1.5)),
-                    const Spacer(),
-                    Text('${_payments.length} registros', style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary)),
-                  ]),
-                  const SizedBox(height: 12),
-                  ..._payments.map((p) => _paymentRow(p)),
-                  const SizedBox(height: 24),
-
-                  // ── FAQ section ────────────────────────────────
-                  Text(LocaleService.t('billing_preguntas_frecuentes'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 1.5)),
-                  const SizedBox(height: 12),
-                  _faqItem(LocaleService.t('dyn_key_26'), LocaleService.t('dyn_key_47')),
-                  _faqItem(LocaleService.t('dyn_key_50'), 'Tarjeta de crédito/débito, transferencia bancaria, y facturación corporativa.'),
-                  _faqItem(LocaleService.t('dyn_key_46'), LocaleService.t('dyn_key_42')),
-                  const SizedBox(height: 20),
-                ],
+            // ── Period toggle ──────────────────────────────
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: AppColors.backgroundSecondary,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.separator, width: 0.5),
               ),
+              child: Row(children: [
+                _toggleButton(LocaleService.t('dyn_key_55'), !_isAnnual, () => setState(() => _isAnnual = false)),
+                _toggleButton('Prepago anual -10%', _isAnnual, () => setState(() => _isAnnual = true)),
+              ]),
+            ),
+            const SizedBox(height: 20),
+
+            // ── Plans ─────────────────────────────────────
+            ..._plans.map((plan) => _planCard(plan)),
+            const SizedBox(height: 8),
+
+            // ── Subscribe button ──────────────────────────
+            GestureDetector(
+              onTap: _confirmSubscription,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(color: AppColors.textPrimary, borderRadius: BorderRadius.circular(12)),
+                child: Center(child: Text('SOLICITAR PROPUESTA', style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.backgroundPrimary, letterSpacing: 0.5))),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Center(child: Text('Cada barcaza y remolcador cuenta como una unidad.', style: GoogleFonts.inter(fontSize: 11, color: AppColors.textTertiary))),
+            const SizedBox(height: 32),
+
+            // ── FAQ section ────────────────────────────────
+            Text(LocaleService.t('billing_preguntas_frecuentes'), style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.textSecondary, letterSpacing: 1.5)),
+            const SizedBox(height: 12),
+            _faqItem(LocaleService.t('dyn_key_26'), LocaleService.t('dyn_key_47')),
+            _faqItem(LocaleService.t('dyn_key_50'), 'Tarjeta de crédito/débito, transferencia bancaria, y facturación corporativa.'),
+            _faqItem(LocaleService.t('dyn_key_46'), LocaleService.t('dyn_key_42')),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -358,7 +313,7 @@ class _BillingScreenState extends State<BillingScreen> {
               Text(plan['desc'], style: GoogleFonts.inter(fontSize: 11, color: AppColors.textSecondary)),
             ])),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              Text('\$$price', style: GoogleFonts.newsreader(fontSize: 24, fontWeight: FontWeight.w400, color: AppColors.textPrimary)),
+              Text('USD $price', style: GoogleFonts.newsreader(fontSize: 24, fontWeight: FontWeight.w400, color: AppColors.textPrimary)),
               Text(unit, style: GoogleFonts.inter(fontSize: 10, color: AppColors.textSecondary)),
             ]),
           ]),
@@ -387,47 +342,6 @@ class _BillingScreenState extends State<BillingScreen> {
           ],
         ]),
       ),
-    );
-  }
-
-  Widget _paymentRow(Map<String, String> p) {
-    final isPaid = p['status'] == LocaleService.t('dyn_key_35');
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.backgroundSecondary,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.separator, width: 0.5),
-      ),
-      child: Row(children: [
-        Container(
-          width: 32, height: 32,
-          decoration: BoxDecoration(
-            color: AppColors.textPrimary.withValues(alpha: 0.06),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Center(child: Icon(
-            isPaid ? CupertinoIcons.checkmark : CupertinoIcons.clock,
-            size: 14, color: AppColors.textPrimary,
-          )),
-        ),
-        const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(p['month'] ?? '', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
-          Text(isPaid ? LocaleService.t('dyn_key_24') : LocaleService.t('dyn_key_40'), style: GoogleFonts.inter(fontSize: 11, color: AppColors.textSecondary)),
-        ])),
-        Text(p['amount'] ?? '', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
-        const SizedBox(width: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-          decoration: BoxDecoration(
-            color: AppColors.textPrimary.withValues(alpha: isPaid ? 0.06 : 0.12),
-            borderRadius: BorderRadius.circular(6),
-          ),
-          child: Text(p['status'] ?? '', style: GoogleFonts.inter(fontSize: 9, fontWeight: FontWeight.w700, color: AppColors.textPrimary, letterSpacing: 0.3)),
-        ),
-      ]),
     );
   }
 

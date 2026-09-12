@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverhub_mobile_v2/widgets/app_drawer.dart';
+import 'package:viabarcazas_mobile/widgets/app_drawer.dart';
 
 void main() {
   group('AppDrawer Widget', () {

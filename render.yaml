@@ -36,3 +36,11 @@ services:
         sync: false
       - key: BACKEND_URL
         value: https://viabarcazas.com
+      # ADENDA (12/9/2026): whatsappRoutes.js ya usaba process.env.CRON_SECRET
+      # para proteger /daily-check y /alert, pero no estaba declarado aca --
+      # sin esto Render nunca lo hubiera tenido seteado como variable real.
+      # Poner el MISMO valor tambien como secret CRON_SECRET en GitHub
+      # (Settings > Secrets and variables > Actions), lo usa
+      # .github/workflows/compliance-alerts.yml para llamar a /daily-check.
+      - key: CRON_SECRET
+        sync: false

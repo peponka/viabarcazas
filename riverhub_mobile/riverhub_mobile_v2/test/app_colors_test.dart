@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverhub_mobile_v2/theme/app_colors.dart';
+import 'package:viabarcazas_mobile/theme/app_colors.dart';
 
 void main() {
   group('AppColors Design Tokens', () {

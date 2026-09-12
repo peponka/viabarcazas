@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverhub_mobile_v2/screens/splash_screen.dart';
-import 'package:riverhub_mobile_v2/widgets/offline_banner.dart';
+import 'package:viabarcazas_mobile/screens/splash_screen.dart';
+import 'package:viabarcazas_mobile/widgets/offline_banner.dart';
 
 void main() {
   group('SplashScreen', () {

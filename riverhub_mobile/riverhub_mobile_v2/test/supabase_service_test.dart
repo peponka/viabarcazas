@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:riverhub_mobile_v2/services/supabase_service.dart';
+import 'package:viabarcazas_mobile/services/supabase_service.dart';
 
 void main() {
   group('SupabaseService', () {

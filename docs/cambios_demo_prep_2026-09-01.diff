@@ -1,0 +1,1002 @@
+diff --git a/public/index-en.html b/public/index-en.html
+index 81f0fae..d38aa6f 100644
+--- a/public/index-en.html
++++ b/public/index-en.html
+@@ -707,19 +707,20 @@
+         <h2>Power for fleets<br><em>of all sizes.</em></h2>
+         <div style="display:inline-flex;background:var(--surface);border-radius:10px;border:0.5px solid var(--sep);padding:4px;margin-top:16px">
+             <button class="pricing-toggle-btn active" data-period="monthly" style="padding:8px 20px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:var(--accent);color:white;transition:all 0.2s">Monthly</button>
+-            <button class="pricing-toggle-btn" data-period="yearly" style="padding:8px 20px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:transparent;color:var(--text2);transition:all 0.2s">Annual <span style="color:var(--success);font-size:11px">(Save 20%)</span></button>
++            <button class="pricing-toggle-btn" data-period="yearly" style="padding:8px 20px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:transparent;color:var(--text2);transition:all 0.2s">Annual <span style="color:var(--success);font-size:11px">(Save 10%)</span></button>
+         </div>
+     </div>
+     <div class="pricing-cards">
+         <div class="price-card reveal">
+-            <h3>Starter</h3>
+-            <p class="price-desc">Up to 5 vessels</p>
+-            <div><span class="price-amount" data-monthly="149" data-yearly="119">$149</span><span class="price-unit"> /month</span></div>
++            <h3>Amarre</h3>
++            <p class="price-desc">Per barge and tug — 1&ndash;9 units</p>
++            <div><span class="price-amount" data-monthly="120" data-yearly="108">$120</span><span class="price-unit"> /unit/month</span></div>
+             <ul class="price-list">
+                 <li><i class="fa-solid fa-check"></i>AIS Tracking</li>
+                 <li><i class="fa-solid fa-check"></i>Digital Logbook</li>
+                 <li><i class="fa-solid fa-check"></i>Fuel Control</li>
+                 <li><i class="fa-solid fa-check"></i>Preventive Maintenance</li>
++                <li><i class="fa-solid fa-check"></i>10&ndash;24 units: $110/unit/month</li>
+                 <li class="disabled"><i class="fa-solid fa-xmark"></i>Convoy Builder</li>
+                 <li class="disabled"><i class="fa-solid fa-xmark"></i>AI Copilot</li>
+             </ul>
+@@ -727,28 +728,28 @@
+         </div>
+         <div class="price-card featured reveal">
+             <div class="price-badge">MOST POPULAR</div>
+-            <h3>Professional</h3>
+-            <p class="price-desc">Up to 20 vessels</p>
+-            <div><span class="price-amount" data-monthly="499" data-yearly="399">$499</span><span class="price-unit"> /month</span></div>
++            <h3>Convoy</h3>
++            <p class="price-desc">Per barge and tug — 25&ndash;49 units</p>
++            <div><span class="price-amount" data-monthly="100" data-yearly="90">$100</span><span class="price-unit"> /unit/month</span></div>
+             <ul class="price-list">
+-                <li><i class="fa-solid fa-check"></i>Everything in Starter</li>
++                <li><i class="fa-solid fa-check"></i>Everything in Amarre</li>
+                 <li><i class="fa-solid fa-check"></i>Convoy Builder</li>
+                 <li><i class="fa-solid fa-check"></i>Crew Management</li>
+                 <li><i class="fa-solid fa-check"></i>AI Copilot</li>
+-                <li><i class="fa-solid fa-check"></i>Priority Support</li>
++                <li><i class="fa-solid fa-check"></i>50&ndash;99 units: $92/unit/month</li>
+             </ul>
+             <a href="#contacto" class="price-btn dark">Request Demo</a>
+         </div>
+         <div class="price-card reveal">
+-            <h3>Enterprise</h3>
+-            <p class="price-desc">Unlimited vessels</p>
+-            <div><span class="price-amount">Contact</span><span class="price-unit"> Sales</span></div>
++            <h3>Armador</h3>
++            <p class="price-desc">Corporate fleet — 100&ndash;149 units</p>
++            <div><span class="price-amount" data-monthly="85" data-yearly="77">$85</span><span class="price-unit"> /unit/month</span></div>
+             <ul class="price-list">
+-                <li><i class="fa-solid fa-check"></i>Everything in Professional</li>
++                <li><i class="fa-solid fa-check"></i>Everything in Convoy</li>
+                 <li><i class="fa-solid fa-check"></i>API Integrations</li>
+                 <li><i class="fa-solid fa-check"></i>SLA 99.9%</li>
+                 <li><i class="fa-solid fa-check"></i>24/7 Dedicated Support</li>
+-                <li><i class="fa-solid fa-check"></i>Custom Onboarding</li>
++                <li><i class="fa-solid fa-check"></i>150+ units: custom quote</li>
+             </ul>
+             <a href="mailto:info@viabarcazas.com" class="price-btn">Contact Sales</a>
+         </div>
+@@ -821,7 +822,7 @@
+                 <div class="roi-card-label">Estimated annual savings</div>
+             </div>
+             <div class="roi-card">
+-                <div class="roi-card-value" id="roi-monthly-cost">$149</div>
++                <div class="roi-card-value" id="roi-monthly-cost">$120</div>
+                 <div class="roi-card-label">Monthly ViaBarcazas cost</div>
+             </div>
+             <div class="roi-card">
+@@ -982,7 +983,7 @@
+         </div>
+         <div class="faq-item">
+             <button class="faq-question" onclick="toggleFAQ(this)">What support do you offer? <span class="faq-icon">+</span></button>
+-            <div class="faq-answer"><div class="faq-answer-inner">Starter: email support during business hours. Professional: priority support with under 4-hour response. Enterprise: dedicated 24/7 support with assigned account manager and guaranteed SLA.</div></div>
++            <div class="faq-answer"><div class="faq-answer-inner">Amarre: email support during business hours. Convoy: priority support with under 4-hour response. Armador: dedicated 24/7 support with assigned account manager and guaranteed SLA.</div></div>
+         </div>
+     </div>
+ </section>
+@@ -1348,6 +1349,7 @@ document.addEventListener('DOMContentLoaded',function(){
+                 el.textContent='$'+val;
+             });
+         });
++    });
+     // Copiloto IA tab switching
+     document.querySelectorAll('.copiloto-tab').forEach(function(tab){
+         tab.addEventListener('click',function(){
+@@ -1373,10 +1375,16 @@ function calculateROI(){
+     document.getElementById('roi-cost-val').textContent='$'+cost.toFixed(2);
+     var annualSavings=fuel*1000*cost*0.18*12;
+     var totalVessels=barges+tugs;
++    var unitPrice=0;
++    if(totalVessels<=9){unitPrice=120;}
++    else if(totalVessels<=24){unitPrice=110;}
++    else if(totalVessels<=49){unitPrice=100;}
++    else if(totalVessels<=99){unitPrice=92;}
++    else if(totalVessels<=149){unitPrice=85;}
++    else{unitPrice=0;}
+     var monthlyCost=0;var monthlyCostLabel='';
+-    if(totalVessels<=5){monthlyCost=149;monthlyCostLabel='$149';}
+-    else if(totalVessels<=20){monthlyCost=499;monthlyCostLabel='$499';}
+-    else{monthlyCost=0;monthlyCostLabel='Contact';}
++    if(unitPrice>0){monthlyCost=unitPrice*totalVessels;monthlyCostLabel='$'+monthlyCost.toLocaleString('en-US');}
++    else{monthlyCost=0;monthlyCostLabel='Custom quote';}
+     var annualCost=monthlyCost*12;
+     var roiMonths=monthlyCost>0?Math.ceil(annualCost/annualSavings*12):0;
+     var netSavings=annualSavings-annualCost;
+diff --git a/public/index.html b/public/index.html
+index 18d2552..f48a76c 100644
+--- a/public/index.html
++++ b/public/index.html
+@@ -904,19 +904,30 @@ function calculateROI() {
+     var ahorroAnual = litrosAhorrados * costo;
+     var co2Toneladas = litrosAhorrados * 2.68 / 1000; // ~2.68 kg CO2 por litro de gasoil
+ 
+-    // Calculate monthly cost based on total vessels
++    // Calculate monthly cost based on total vessels (escala por unidad)
+     var totalVessels = barcazas + remolcadores;
++    var precioUnitario = 0;
++    if (totalVessels <= 9) {
++        precioUnitario = 120;
++    } else if (totalVessels <= 24) {
++        precioUnitario = 110;
++    } else if (totalVessels <= 49) {
++        precioUnitario = 100;
++    } else if (totalVessels <= 99) {
++        precioUnitario = 92;
++    } else if (totalVessels <= 149) {
++        precioUnitario = 85;
++    } else {
++        precioUnitario = 0;
++    }
+     var costoMensual = 0;
+     var costoMensualText = '';
+-    if (totalVessels <= 5) {
+-        costoMensual = 179;
+-        costoMensualText = '$179';
+-    } else if (totalVessels <= 20) {
+-        costoMensual = 549;
+-        costoMensualText = '$549';
++    if (precioUnitario > 0) {
++        costoMensual = precioUnitario * totalVessels;
++        costoMensualText = '$' + costoMensual.toLocaleString('es-AR');
+     } else {
+         costoMensual = 0;
+-        costoMensualText = 'a medida';
++        costoMensualText = 'Cotización personalizada';
+     }
+ 
+     // Calculate ROI in months
+@@ -1038,7 +1049,8 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
+         <!-- AMARRE -->
+         <div class="price-card reveal">
+             <h3>Amarre</h3>
+-            <p class="price-desc">Hasta 5 embarcaciones</p>
++            <p class="price-desc">Por cada barcaza y remolcador — 1–9 unidades</p>
++            <div><span class="price-amount">$120</span><span class="price-unit"> /unidad/mes</span></div>
+             <div style="margin:20px 0 8px">
+                 <div style="font-size:15px;font-weight:700;color:var(--success);letter-spacing:0.5px">✦ PARA ARRANCAR</div>
+                 <div style="font-size:13px;color:var(--text2);margin-top:4px">Salí del Excel y la radio esta semana</div>
+@@ -1048,6 +1060,7 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
+                 <li><i class="fa-solid fa-check"></i>Bitácora digital</li>
+                 <li><i class="fa-solid fa-check"></i>Control de combustible</li>
+                 <li><i class="fa-solid fa-check"></i>Mantenimiento preventivo</li>
++                <li><i class="fa-solid fa-check"></i>10–24 unidades: $110/unidad/mes</li>
+                 <li class="disabled"><i class="fa-solid fa-xmark"></i>Copiloto IA</li>
+                 <li class="disabled"><i class="fa-solid fa-xmark"></i>Armador de convoyes</li>
+             </ul>
+@@ -1058,7 +1071,8 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
+         <div class="price-card featured reveal">
+             <div class="price-badge">MÁS ELEGIDO</div>
+             <h3>Convoy</h3>
+-            <p class="price-desc">Hasta 20 embarcaciones</p>
++            <p class="price-desc">Por cada barcaza y remolcador — 25–49 unidades</p>
++            <div><span class="price-amount">$100</span><span class="price-unit"> /unidad/mes</span></div>
+             <div style="margin:20px 0 8px">
+                 <div style="font-size:15px;font-weight:700;color:white;letter-spacing:0.5px">✦ TODA LA OPERACIÓN</div>
+                 <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px">Copiloto IA leyendo tus datos, no promedios</div>
+@@ -1069,6 +1083,7 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
+                 <li><i class="fa-solid fa-check"></i>Gestión de tripulación</li>
+                 <li><i class="fa-solid fa-check"></i>Pronóstico de hidrovía</li>
+                 <li><i class="fa-solid fa-check"></i>Copiloto IA con datos reales</li>
++                <li><i class="fa-solid fa-check"></i>50–99 unidades: $92/unidad/mes</li>
+             </ul>
+             <a href="#contacto" class="price-btn dark">Solicitar Demo →</a>
+         </div>
+@@ -1076,17 +1091,19 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
+         <!-- ARMADOR -->
+         <div class="price-card reveal">
+             <h3>Armador</h3>
+-            <p class="price-desc">Embarcaciones ilimitadas</p>
++            <p class="price-desc">Flota corporativa — 100–149 unidades</p>
++            <div><span class="price-amount">$85</span><span class="price-unit"> /unidad/mes</span></div>
+             <div style="margin:20px 0 8px">
+                 <div style="font-size:15px;font-weight:700;color:var(--accent);letter-spacing:0.5px">✦ FLOTA COMPLETA</div>
+                 <div style="font-size:13px;color:var(--text2);margin-top:4px">Para armadores y operadores grandes</div>
+             </div>
+             <ul class="price-list">
+-                <li><i class="fa-solid fa-check"></i>Embarcaciones ilimitadas</li>
++                <li><i class="fa-solid fa-check"></i>Embarcaciones sin límite</li>
+                 <li><i class="fa-solid fa-check"></i>Copiloto IA avanzado</li>
+                 <li><i class="fa-solid fa-check"></i>API e integraciones</li>
+                 <li><i class="fa-solid fa-check"></i>Soporte 24/7 dedicado</li>
+                 <li><i class="fa-solid fa-check"></i>SLA 99.9% garantizado</li>
++                <li><i class="fa-solid fa-check"></i>150+ unidades: propuesta a medida</li>
+             </ul>
+             <a href="mailto:info@viabarcazas.com" class="price-btn">Hablar con nosotros →</a>
+         </div>
+@@ -1829,9 +1846,9 @@ function toggleFAQ(index) {
+             <a href="mailto:info@viabarcazas.com" style="display:flex;align-items:center;gap:8px"><i class="fa-solid fa-envelope" style="font-size:11px"></i> info@viabarcazas.com</a>
+             <a href="#contacto" style="display:flex;align-items:center;gap:8px"><i class="fa-solid fa-location-dot" style="font-size:11px"></i> Asunción, Paraguay</a>
+             <div class="footer-socials" style="margin-top:14px">
+-                <a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+-                <a href="https://x.com" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
+-                <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
++                <a href="#" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
++                <a href="#" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a>
++                <a href="#" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i></a>
+             </div>
+         </div>
+     </div>
+@@ -1872,8 +1889,8 @@ function toggleFAQ(index) {
+       "url": "https://viabarcazas.com",
+       "offers": {
+         "@type": "AggregateOffer",
+-        "lowPrice": "179",
+-        "highPrice": "549",
++        "lowPrice": "85",
++        "highPrice": "120",
+         "priceCurrency": "USD",
+         "offerCount": "3"
+       },
+diff --git a/public/landing.html b/public/landing.html
+index c312658..a5e0a78 100644
+--- a/public/landing.html
++++ b/public/landing.html
+@@ -572,42 +572,45 @@
+     </div>
+     <div class="pricing-cards">
+         <div class="price-card reveal">
+-            <h3>Por Barcaza</h3>
+-            <p class="price-desc">Control individual de cada activo</p>
+-            <div><span class="price-amount">$149</span><span class="price-unit"> /barcaza/mes</span></div>
++            <h3>Amarre</h3>
++            <p class="price-desc">Por cada barcaza y remolcador — 1–9 unidades</p>
++            <div><span class="price-amount">$120</span><span class="price-unit"> /unidad/mes</span></div>
+             <ul class="price-list">
+                 <li><i class="fa-solid fa-check"></i>Tracking GPS en tiempo real</li>
+                 <li><i class="fa-solid fa-check"></i>Bitácora digital</li>
+                 <li><i class="fa-solid fa-check"></i>Control de combustible</li>
+                 <li><i class="fa-solid fa-check"></i>Mantenimiento preventivo</li>
++                <li><i class="fa-solid fa-check"></i>10–24 unidades: $110/unidad/mes</li>
+                 <li class="disabled"><i class="fa-solid fa-xmark"></i>Copiloto IA</li>
+             </ul>
+             <a href="viabarcazas.html" class="price-btn">Seleccionar</a>
+         </div>
+         <div class="price-card featured reveal">
+-            <div class="price-badge">MÁS POPULAR</div>
+-            <h3>Combo Flota</h3>
+-            <p class="price-desc">Hasta 10 embarcaciones con descuento</p>
+-            <div><span class="price-amount">$899</span><span class="price-unit"> /mes</span></div>
++            <div class="price-badge">MÁS ELEGIDO</div>
++            <h3>Convoy</h3>
++            <p class="price-desc">Por cada barcaza y remolcador — 25–49 unidades</p>
++            <div><span class="price-amount">$100</span><span class="price-unit"> /unidad/mes</span></div>
+             <ul class="price-list">
+-                <li><i class="fa-solid fa-check"></i>Todo de Por Barcaza</li>
++                <li><i class="fa-solid fa-check"></i>Todo de Amarre</li>
+                 <li><i class="fa-solid fa-check"></i>Armador de convoyes</li>
+                 <li><i class="fa-solid fa-check"></i>Gestión de tripulación</li>
+                 <li><i class="fa-solid fa-check"></i>Comunicaciones satelital</li>
+                 <li><i class="fa-solid fa-check"></i>Copiloto IA básico</li>
++                <li><i class="fa-solid fa-check"></i>50–99 unidades: $92/unidad/mes</li>
+             </ul>
+             <a href="viabarcazas.html" class="price-btn dark">Comenzar Gratis</a>
+         </div>
+         <div class="price-card reveal">
+-            <h3>Enterprise</h3>
+-            <p class="price-desc">Solución corporativa sin límites</p>
+-            <div><span class="price-amount">$1,499</span><span class="price-unit"> /mes</span></div>
++            <h3>Armador</h3>
++            <p class="price-desc">Flota corporativa — 100–149 unidades</p>
++            <div><span class="price-amount">$85</span><span class="price-unit"> /unidad/mes</span></div>
+             <ul class="price-list">
+-                <li><i class="fa-solid fa-check"></i>Embarcaciones ilimitadas</li>
++                <li><i class="fa-solid fa-check"></i>Embarcaciones sin límite</li>
+                 <li><i class="fa-solid fa-check"></i>Copiloto IA avanzado</li>
+                 <li><i class="fa-solid fa-check"></i>API integraciones</li>
+                 <li><i class="fa-solid fa-check"></i>Soporte prioritario 24/7</li>
+                 <li><i class="fa-solid fa-check"></i>SLA 99.9%</li>
++                <li><i class="fa-solid fa-check"></i>150+ unidades: propuesta a medida</li>
+             </ul>
+             <a href="mailto:info@viabarcazas.com" class="price-btn">Contactar Ventas</a>
+         </div>
+diff --git a/public/pricing.html b/public/pricing.html
+index 0fa97d4..d5d5f29 100644
+--- a/public/pricing.html
++++ b/public/pricing.html
+@@ -120,19 +120,21 @@
+             <input type="checkbox" id="billing-toggle" onchange="toggleBilling()">
+             <span class="toggle-track"></span>
+         </label>
+-        <span class="toggle-label" id="lbl-annual">Anual <span class="discount-badge">−20%</span></span>
++        <span class="toggle-label" id="lbl-annual">Anual <span class="discount-badge">−10%</span></span>
+     </div>
+ </div>
+ 
+ <div class="plans-grid">
+ 
+-    <!-- STARTER -->
++    <!-- AMARRE (1-9 y 10-24 unidades) -->
+     <div class="plan-card">
+-        <div class="plan-name">Starter</div>
+-        <div class="plan-price"><span>$</span><span id="price-starter">149</span></div>
+-        <div class="plan-period">USD / mes</div>
+-        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i>Hasta <strong>5 embarcaciones</strong></div>
++        <div class="plan-name">Amarre</div>
++        <div class="plan-price"><span>$</span><span class="plan-amount" data-monthly="120" data-yearly="108">120</span></div>
++        <div class="plan-period">USD / unidad / mes — desde</div>
++        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i>Por cada barcaza y remolcador — <strong>sin límite de embarcaciones</strong></div>
+         <ul class="plan-features">
++            <li><i class="fas fa-money-bill-wave"></i>1–9 unidades: <strong>$<span class="plan-amount" data-monthly="120" data-yearly="108">120</span>/unidad/mes</strong></li>
++            <li><i class="fas fa-money-bill-wave"></i>10–24 unidades: <strong>$<span class="plan-amount" data-monthly="110" data-yearly="99">110</span>/unidad/mes</strong></li>
+             <li><i class="fas fa-check-circle"></i>AIS Tracking satelital</li>
+             <li><i class="fas fa-check-circle"></i>GPS en tiempo real</li>
+             <li><i class="fas fa-check-circle"></i>Dashboard ejecutivo</li>
+@@ -140,19 +142,21 @@
+             <li><i class="fas fa-check-circle"></i>Gestión de tripulación</li>
+             <li><i class="fas fa-check-circle"></i>Soporte por email</li>
+         </ul>
+-        <button class="plan-cta secondary" onclick="startCheckout('starter')">Empezar prueba gratis</button>
++        <button class="plan-cta secondary" onclick="startCheckout('amarre')">Hablar con ventas</button>
+         <div class="plan-note">14 días gratis, sin tarjeta</div>
+     </div>
+ 
+-    <!-- PROFESIONAL -->
++    <!-- CONVOY (25-49 y 50-99 unidades) -->
+     <div class="plan-card popular">
+-        <div class="popular-badge">MÁS POPULAR</div>
+-        <div class="plan-name">Profesional</div>
+-        <div class="plan-price"><span>$</span><span id="price-pro">499</span></div>
+-        <div class="plan-period">USD / mes</div>
+-        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i>Hasta <strong>25 embarcaciones</strong></div>
++        <div class="popular-badge">MÁS ELEGIDO</div>
++        <div class="plan-name">Convoy</div>
++        <div class="plan-price"><span>$</span><span class="plan-amount" data-monthly="100" data-yearly="90">100</span></div>
++        <div class="plan-period">USD / unidad / mes — desde</div>
++        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i>Por cada barcaza y remolcador — <strong>sin límite de embarcaciones</strong></div>
+         <ul class="plan-features">
+-            <li><i class="fas fa-check-circle"></i>Todo lo de Starter</li>
++            <li><i class="fas fa-money-bill-wave"></i>25–49 unidades: <strong>$<span class="plan-amount" data-monthly="100" data-yearly="90">100</span>/unidad/mes</strong></li>
++            <li><i class="fas fa-money-bill-wave"></i>50–99 unidades: <strong>$<span class="plan-amount" data-monthly="92" data-yearly="83">92</span>/unidad/mes</strong></li>
++            <li><i class="fas fa-check-circle"></i>Todo lo de Amarre</li>
+             <li><i class="fas fa-check-circle"></i>AI Copilot con datos reales</li>
+             <li><i class="fas fa-check-circle"></i>Convoy Builder</li>
+             <li><i class="fas fa-check-circle"></i>Fuel Analytics + predicciones</li>
+@@ -161,18 +165,20 @@
+             <li><i class="fas fa-check-circle"></i>Alertas de bajante/calado</li>
+             <li><i class="fas fa-check-circle"></i>Soporte prioritario</li>
+         </ul>
+-        <button class="plan-cta primary" onclick="startCheckout('pro')">Empezar prueba gratis</button>
++        <button class="plan-cta primary" onclick="startCheckout('convoy')">Hablar con ventas</button>
+         <div class="plan-note">14 días gratis, sin tarjeta</div>
+     </div>
+ 
+-    <!-- ENTERPRISE -->
++    <!-- ARMADOR (100-149 unidades y 150+) -->
+     <div class="plan-card">
+-        <div class="plan-name">Enterprise</div>
+-        <div class="plan-price"><span>$</span><span id="price-enterprise">1999</span></div>
+-        <div class="plan-period">USD / mes</div>
+-        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i><strong>Embarcaciones ilimitadas</strong></div>
++        <div class="plan-name">Armador</div>
++        <div class="plan-price"><span>$</span><span class="plan-amount" data-monthly="85" data-yearly="77">85</span></div>
++        <div class="plan-period">USD / unidad / mes — desde</div>
++        <div class="plan-vessels"><i class="fas fa-ship" style="margin-right:6px;color:var(--text2)"></i>Flota corporativa — <strong>sin límite de embarcaciones</strong></div>
+         <ul class="plan-features">
+-            <li><i class="fas fa-check-circle"></i>Todo lo de Profesional</li>
++            <li><i class="fas fa-money-bill-wave"></i>100–149 unidades: <strong>$<span class="plan-amount" data-monthly="85" data-yearly="77">85</span>/unidad/mes</strong></li>
++            <li><i class="fas fa-money-bill-wave"></i>150+ unidades: <strong>Propuesta / cotización personalizada</strong></li>
++            <li><i class="fas fa-check-circle"></i>Todo lo de Convoy</li>
+             <li><i class="fas fa-check-circle"></i>Multi-usuario ilimitado</li>
+             <li><i class="fas fa-check-circle"></i>Acceso API completo</li>
+             <li><i class="fas fa-check-circle"></i>Reportes avanzados</li>
+@@ -180,8 +186,8 @@
+             <li><i class="fas fa-check-circle"></i>SLA garantizado</li>
+             <li><i class="fas fa-check-circle"></i>Gerente de cuenta dedicado</li>
+         </ul>
+-        <button class="plan-cta secondary" onclick="startCheckout('enterprise')">Contactar ventas</button>
+-        <div class="plan-note">Facturación anual disponible</div>
++        <button class="plan-cta secondary" onclick="startCheckout('armador')">Contactar ventas</button>
++        <div class="plan-note">Facturación anual disponible — 10% off pagando el año completo</div>
+     </div>
+ 
+ </div>
+@@ -200,8 +206,8 @@
+             <div class="faq-a">Sí, podés subir o bajar de plan en cualquier momento. Los cambios se aplican de forma inmediata y el cobro se ajusta proporcionalmente.</div>
+         </div>
+         <div class="faq-item">
+-            <div class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si supero el límite de embarcaciones? <i class="fas fa-chevron-down"></i></div>
+-            <div class="faq-a">Te avisamos antes de alcanzar el límite y te ofrecemos la opción de upgradear. No cortamos el servicio de golpe.</div>
++            <div class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si crece mi flota? <i class="fas fa-chevron-down"></i></div>
++            <div class="faq-a">No hay límite de embarcaciones ni corte de servicio: pagás por unidad (cada barcaza y remolcador) y la tarifa baja sola al cruzar cada escalón de volumen (10, 25, 50, 100 unidades). A partir de 150 unidades armamos una propuesta a medida.</div>
+         </div>
+         <div class="faq-item">
+             <div class="faq-q" onclick="toggleFaq(this)">¿Los datos son seguros? <i class="fas fa-chevron-down"></i></div>
+@@ -224,55 +230,34 @@
+ </footer>
+ 
+ <script>
+-const prices = {
+-    monthly:  { starter: 149,  pro: 499,  enterprise: 1999 },
+-    annual:   { starter: 119,  pro: 399,  enterprise: 1599 }
+-};
++// Modelo por unidad facturable (cada barcaza y remolcador cuenta como
++// una unidad) con descuento por escala. El toggle Mensual/Anual aplica
++// un 10% de descuento sobre cualquier escalon (no hay tarifas anuales
++// distintas por escalon, es el mismo -10% siempre).
+ let billing = 'monthly';
+ 
+ function toggleBilling() {
+     billing = document.getElementById('billing-toggle').checked ? 'annual' : 'monthly';
+-    const p = prices[billing];
+-    document.getElementById('price-starter').textContent = p.starter;
+-    document.getElementById('price-pro').textContent = p.pro;
+-    document.getElementById('price-enterprise').textContent = p.enterprise;
++    document.querySelectorAll('.plan-amount').forEach(function(el) {
++        el.textContent = billing === 'annual' ? el.dataset.yearly : el.dataset.monthly;
++    });
+     document.getElementById('lbl-monthly').classList.toggle('active', billing === 'monthly');
+     document.getElementById('lbl-annual').classList.toggle('active', billing === 'annual');
+ }
+ 
+-async function startCheckout(plan) {
+-    if (plan === 'enterprise') {
+-        window.location.href = 'mailto:ventas@viabarcazas.com?subject=Plan Enterprise';
+-        return;
+-    }
+-    try {
+-        const token = (() => {
+-            for (let i = 0; i < localStorage.length; i++) {
+-                const k = localStorage.key(i);
+-                if (k.startsWith('sb-') && k.endsWith('-auth-token')) {
+-                    try { return JSON.parse(localStorage.getItem(k))?.access_token; } catch(e){}
+-                }
+-            }
+-            return null;
+-        })();
+-
+-        if (!token) {
+-            window.location.href = '/onboarding.html?plan=' + plan + '&billing=' + billing;
+-            return;
+-        }
+-
+-        const res = await fetch('/api/create-checkout', {
+-            method: 'POST',
+-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+-            body: JSON.stringify({ plan, billing })
+-        });
+-        const data = await res.json();
+-        if (data.url) window.location.href = data.url;
+-        else alert('Error al iniciar el pago. Por favor intentá de nuevo.');
+-    } catch(e) {
+-        console.error(e);
+-        alert('Error de conexión. Por favor intentá de nuevo.');
+-    }
++// El checkout automatico (via /api/create-checkout) todavia esta
++// conectado a un esquema de planes viejo e incompatible con este
++// modelo por unidad (ver docs/ para el detalle). Hasta que se actualice
++// el backend de pago, estos botones abren un contacto directo en vez
++// de arriesgarse a cobrar un monto que no coincide con lo mostrado.
++function startCheckout(plan) {
++    var subjects = {
++        amarre: 'Consulta plan Amarre - ViaBarcazas',
++        convoy: 'Consulta plan Convoy - ViaBarcazas',
++        armador: 'Consulta plan Armador - ViaBarcazas'
++    };
++    var subject = subjects[plan] || 'Consulta de plan - ViaBarcazas';
++    window.location.href = 'mailto:info@viabarcazas.com?subject=' + encodeURIComponent(subject);
+ }
+ 
+ function toggleFaq(el) {
+diff --git a/public/viabarcazas.css b/public/viabarcazas.css
+index decf1a7..483aacf 100644
+--- a/public/viabarcazas.css
++++ b/public/viabarcazas.css
+@@ -17,6 +17,11 @@ html,body{font-family:'Manrope',-apple-system,sans-serif;background:var(--bg-pri
+ .sidebar-nav::-webkit-scrollbar-track{background:transparent}
+ .sidebar-nav::-webkit-scrollbar-thumb{background:var(--separator);border-radius:3px}
+ .nav-section-label{padding:20px 24px 6px;font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:1.5px}
++.nav-more{border:none;margin:0}
++.nav-more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
++.nav-more>summary::-webkit-details-marker{display:none}
++.nav-more>summary .nav-more-chevron{transition:transform 0.15s;font-size:9px}
++.nav-more[open]>summary .nav-more-chevron{transform:rotate(180deg)}
+ .nav-item{display:flex;align-items:center;gap:12px;padding:8px 24px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-primary);text-decoration:none;transition:background 0.15s}
+ .nav-item:hover{background:var(--surface-low)}
+ .nav-item.active{background:var(--surface-low);font-weight:600}
+@@ -56,6 +61,9 @@ html,body{font-family:'Manrope',-apple-system,sans-serif;background:var(--bg-pri
+ .empty-state{text-align:center;padding:60px 20px;color:var(--text-secondary)}
+ .empty-state i{font-size:32px;color:var(--text-tertiary);margin-bottom:12px}
+ .empty-state p{font-size:13px}
++.empty-state-compact{padding:20px 10px}
++.empty-state-compact i{font-size:18px;margin-bottom:6px}
++.empty-state-compact p{font-size:11px}
+ .btn-primary{background:var(--accent);color:white;border:none;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;font-family:'Manrope',sans-serif;cursor:pointer}
+ .btn-secondary{background:var(--cell-fill);color:var(--text-primary);border:0.5px solid var(--separator);padding:10px 20px;border-radius:10px;font-size:13px;font-weight:500;font-family:'Manrope',sans-serif;cursor:pointer}
+ .convoy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+diff --git a/public/viabarcazas.html b/public/viabarcazas.html
+index d20d86d..636c6d3 100644
+--- a/public/viabarcazas.html
++++ b/public/viabarcazas.html
+@@ -80,38 +80,36 @@
+             <div class="sidebar-user"><div class="user-avatar" id="user-initials">--</div><div class="user-info"><div class="user-name" id="user-display">Cargando...</div><div class="user-role">SUPERADMIN - ASU</div></div></div>
+         </div>
+         <div class="sidebar-nav">
+-            <div class="nav-section-label">AHORA</div>
++            <div class="nav-section-label">Núcleo</div>
+             <a class="nav-item active" data-view="dashboard"><i class="fa-solid fa-grip"></i>Panel de Control</a>
+             <a class="nav-item" data-view="mapa"><i class="fa-solid fa-map"></i>Mapa de Flota</a>
+-            <a class="nav-item" data-view="copiloto"><i class="fa-solid fa-robot"></i>Copiloto IA</a>
+-            <div class="nav-section-label">PLANIFICACIÓN</div>
+-            <a class="nav-item" data-view="convoy"><i class="fa-solid fa-link"></i>Armador de Convoy</a>
+-            <a class="nav-item" data-view="viajes"><i class="fa-solid fa-file-lines"></i>Gestion de Viajes</a>
+-            <a class="nav-item" data-view="prezarpe"><i class="fa-solid fa-clipboard-check"></i>Pre-Zarpe</a>
+-            <div class="nav-section-label">FLOTA</div>
+             <a class="nav-item" data-view="fleet"><i class="fa-solid fa-anchor"></i>Gestion de Flota</a>
+-            <a class="nav-item" data-view="tripulacion"><i class="fa-solid fa-users"></i>Tripulacion &amp; Safety</a>
++            <a class="nav-item" data-view="bitacora"><i class="fa-solid fa-book"></i>Bitacora Digital</a>
+             <a class="nav-item" data-view="combustible"><i class="fa-solid fa-gas-pump"></i>Combustible</a>
+-            <a class="nav-item" data-view="liquidos"><i class="fa-solid fa-droplet"></i>Líquidos (Tanques)</a>
+-            <a class="nav-item" data-view="calado"><i class="fa-solid fa-ruler-vertical"></i>Calados &amp; Hidrometria</a>
+             <a class="nav-item" data-view="mantenimiento"><i class="fa-solid fa-wrench"></i>Mantenimiento</a>
+-            <a class="nav-item" data-view="panol"><i class="fa-solid fa-box-archive"></i>Panol (Inventario)</a>
+-            <a class="nav-item" data-view="incidentes"><i class="fa-solid fa-triangle-exclamation"></i>Incidentes</a>
+-            <a class="nav-item" data-view="contratos"><i class="fa-solid fa-file-contract"></i>Contratos de Flete</a>
+-            <div class="nav-section-label">COMUNICACIÓN</div>
+-            <a class="nav-item" data-view="bitacora"><i class="fa-solid fa-book"></i>Bitacora Digital</a>
+-            <a class="nav-item" data-view="comunicaciones"><i class="fa-solid fa-tower-broadcast"></i>Comunicaciones</a>
+-            <a class="nav-item" onclick="window.location.href='admin-whatsapp-viabarcazas.html'" style="cursor:pointer"><i class="fab fa-whatsapp" style="color:#25D366"></i>WhatsApp Alerts<span id="nav-wa-badge" style="background:#25D366;color:#fff;font-size:10px;font-weight:700;border-radius:10px;padding:2px 7px;margin-left:auto;display:none">0</span></a>
+-            <div class="nav-section-label">INTELIGENCIA</div>
+-            <a class="nav-item" data-view="hidrologia"><i class="fa-solid fa-water"></i>Pronostico Hidrovia</a>
+-            <a class="nav-item" data-view="reportes"><i class="fa-solid fa-chart-pie"></i>Reportes &amp; Analytics</a>
+-            <a class="nav-item" data-view="briefing"><i class="fa-solid fa-newspaper"></i>Briefing Diario</a>
+-            <a class="nav-item" data-view="tracking"><i class="fa-solid fa-location-dot"></i>Tracking de Cargas</a>
+-            <a class="nav-item" onclick="window.location.href='admin-facturacion-ia-viabarcazas.html'" style="cursor:pointer"><i class="fa-solid fa-file-invoice-dollar" style="color:#7C3AED"></i>Facturación IA</a>
+-            <div class="nav-section-label">CUENTA</div>
+-            <a class="nav-item" data-view="planes"><i class="fa-solid fa-credit-card"></i>Planes &amp; Facturacion</a>
+-            <a class="nav-item" onclick="window.location.href='portal-clientes.html'" style="cursor:pointer"><i class="fa-solid fa-building" style="color:#059669"></i>Portal de Cliente</a>
+-            <a class="nav-item" data-view="admin" id="nav-admin" style="display:none"><i class="fa-solid fa-shield-halved"></i>Panel Admin</a>
++            <a class="nav-item" data-view="convoy"><i class="fa-solid fa-link"></i>Armador de Convoy</a>
++            <a class="nav-item" data-view="viajes"><i class="fa-solid fa-file-lines"></i>Gestion de Viajes</a>
++            <details class="nav-more">
++                <summary class="nav-section-label">Más módulos <i class="fa-solid fa-chevron-down nav-more-chevron"></i></summary>
++                <a class="nav-item" data-view="copiloto"><i class="fa-solid fa-robot"></i>Copiloto IA</a>
++                <a class="nav-item" data-view="prezarpe"><i class="fa-solid fa-clipboard-check"></i>Pre-Zarpe</a>
++                <a class="nav-item" data-view="tripulacion"><i class="fa-solid fa-users"></i>Tripulacion &amp; Safety</a>
++                <a class="nav-item" data-view="liquidos"><i class="fa-solid fa-droplet"></i>Líquidos (Tanques)</a>
++                <a class="nav-item" data-view="calado"><i class="fa-solid fa-ruler-vertical"></i>Calados &amp; Hidrometria</a>
++                <a class="nav-item" data-view="panol"><i class="fa-solid fa-box-archive"></i>Panol (Inventario)</a>
++                <a class="nav-item" data-view="incidentes"><i class="fa-solid fa-triangle-exclamation"></i>Incidentes</a>
++                <a class="nav-item" data-view="contratos"><i class="fa-solid fa-file-contract"></i>Contratos de Flete</a>
++                <a class="nav-item" data-view="comunicaciones"><i class="fa-solid fa-tower-broadcast"></i>Comunicaciones</a>
++                <a class="nav-item" onclick="window.location.href='admin-whatsapp-viabarcazas.html'" style="cursor:pointer"><i class="fab fa-whatsapp" style="color:#25D366"></i>WhatsApp Alerts<span id="nav-wa-badge" style="background:#25D366;color:#fff;font-size:10px;font-weight:700;border-radius:10px;padding:2px 7px;margin-left:auto;display:none">0</span></a>
++                <a class="nav-item" data-view="hidrologia"><i class="fa-solid fa-water"></i>Pronostico Hidrovia</a>
++                <a class="nav-item" data-view="reportes"><i class="fa-solid fa-chart-pie"></i>Reportes &amp; Analytics</a>
++                <a class="nav-item" data-view="briefing"><i class="fa-solid fa-newspaper"></i>Briefing Diario</a>
++                <a class="nav-item" data-view="tracking"><i class="fa-solid fa-location-dot"></i>Tracking de Cargas</a>
++                <a class="nav-item" onclick="window.location.href='admin-facturacion-ia-viabarcazas.html'" style="cursor:pointer"><i class="fa-solid fa-file-invoice-dollar" style="color:#7C3AED"></i>Facturación IA</a>
++                <a class="nav-item" data-view="planes"><i class="fa-solid fa-credit-card"></i>Planes &amp; Facturacion</a>
++                <a class="nav-item" onclick="window.location.href='portal-clientes.html'" style="cursor:pointer"><i class="fa-solid fa-building" style="color:#059669"></i>Portal de Cliente</a>
++                <a class="nav-item" data-view="admin" id="nav-admin" style="display:none"><i class="fa-solid fa-shield-halved"></i>Panel Admin</a>
++            </details>
+             <div style="padding:20px 24px;margin-top:auto;"><button class="btn-secondary" style="width:100%;" onclick="doLogout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesion</button></div>
+         </div>
+     </nav>
+@@ -145,7 +143,7 @@
+                 <div style="display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--separator);border-radius:14px;overflow:hidden;margin-bottom:16px" id="dash-kpi-grid">
+                     <div class="kpi-card" style="position:relative;overflow:hidden">
+                         <div style="display:flex;align-items:center;justify-content:space-between">
+-                            <div class="kpi-label">FLOTA ACTIVA</div>
++                            <div class="kpi-label">Flota activa</div>
+                             <div style="width:30px;height:30px;border-radius:9px;background:var(--accent)22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-ship" style="color:var(--accent);font-size:13px"></i></div>
+                         </div>
+                         <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px">
+@@ -156,7 +154,7 @@
+                     </div>
+                     <div class="kpi-card" style="position:relative;overflow:hidden">
+                         <div style="display:flex;align-items:center;justify-content:space-between">
+-                            <div class="kpi-label">ALARMAS CRÍTICAS</div>
++                            <div class="kpi-label">Alarmas críticas</div>
+                             <div style="width:30px;height:30px;border-radius:9px;background:var(--warning)22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-triangle-exclamation" style="color:var(--warning);font-size:13px"></i></div>
+                         </div>
+                         <div style="display:flex;align-items:baseline;gap:6px;margin-top:8px">
+@@ -166,7 +164,7 @@
+                     </div>
+                     <div class="kpi-card" style="position:relative;overflow:hidden">
+                         <div style="display:flex;align-items:center;justify-content:space-between">
+-                            <div class="kpi-label">CONSUMO TOTAL</div>
++                            <div class="kpi-label">Consumo total</div>
+                             <div style="width:30px;height:30px;border-radius:9px;background:var(--orange)22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-gas-pump" style="color:var(--orange);font-size:13px"></i></div>
+                         </div>
+                         <div style="display:flex;align-items:baseline;gap:4px;margin-top:8px">
+@@ -177,7 +175,7 @@
+                     </div>
+                     <div class="kpi-card" style="position:relative;overflow:hidden">
+                         <div style="display:flex;align-items:center;justify-content:space-between">
+-                            <div class="kpi-label">CALADO MÍNIMO</div>
++                            <div class="kpi-label">Calado mínimo</div>
+                             <div style="width:30px;height:30px;border-radius:9px;background:var(--accent-teal)22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-ruler-vertical" style="color:var(--accent-teal);font-size:13px"></i></div>
+                         </div>
+                         <div style="display:flex;align-items:baseline;gap:4px;margin-top:8px">
+@@ -192,7 +190,7 @@
+                                  como activas/total: es disponibilidad de flota, no
+                                  puntualidad de rutas. Se renombra para no prometer
+                                  una métrica que el sistema todavía no calcula. -->
+-                            <div class="kpi-label">DISPONIBILIDAD FLOTA</div>
++                            <div class="kpi-label">Disponibilidad flota</div>
+                             <div style="width:30px;height:30px;border-radius:9px;background:var(--success)22;display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-ship" style="color:var(--success);font-size:13px"></i></div>
+                         </div>
+                         <div style="display:flex;align-items:baseline;gap:4px;margin-top:8px">
+@@ -207,7 +205,7 @@
+                 <div onclick="window.location.href='admin-whatsapp-viabarcazas.html'" style="cursor:pointer;background:linear-gradient(135deg,#25D366 0%,#128C7E 100%);border-radius:12px;padding:14px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(37,211,102,0.25)">
+                     <i class="fab fa-whatsapp" style="font-size:28px;color:white;opacity:0.9;flex-shrink:0"></i>
+                     <div style="flex:1;min-width:0">
+-                        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.75);letter-spacing:1px">ALERTAS WHATSAPP · META API</div>
++                        <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.75);letter-spacing:0.5px">Alertas WhatsApp · Meta API</div>
+                         <div style="font-size:13px;color:white;margin-top:3px"><span id="dash-wa-contacts">--</span> contactos activos · <span id="dash-wa-sent">--</span> enviados hoy</div>
+                     </div>
+                     <button onclick="event.stopPropagation();window.location.href='admin-whatsapp-viabarcazas.html'" style="background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:white;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0"><i class="fab fa-whatsapp"></i> Enviar Alerta</button>
+@@ -219,7 +217,7 @@
+                     <div>
+                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+                             <div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:14px;padding:18px">
+-                                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><i class="fa-solid fa-sun" style="font-size:24px;color:var(--warning)"></i><div><div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:1px">METEOROLOGÍA · ASU</div><div style="font-size:13px;font-weight:500;margin-top:2px" id="dash-weather2">Cargando...</div></div></div>
++                                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><i class="fa-solid fa-sun" style="font-size:24px;color:var(--warning)"></i><div><div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.5px">Meteorología · ASU</div><div style="font-size:13px;font-weight:500;margin-top:2px" id="dash-weather2">Cargando...</div></div></div>
+                                 <div style="display:flex;gap:16px;margin-top:10px">
+                                     <div style="font-size:11px;color:var(--text-secondary)"><i class="fa-solid fa-temperature-half" style="width:14px"></i> <span id="dash-temp">--</span>°C</div>
+                                     <div style="font-size:11px;color:var(--text-secondary)"><i class="fa-solid fa-wind" style="width:14px"></i> <span id="dash-wind">--</span> km/h</div>
+@@ -227,7 +225,7 @@
+                                 </div>
+                             </div>
+                             <div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:14px;padding:18px">
+-                                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><i class="fa-solid fa-water" style="font-size:24px;color:var(--accent)"></i><div><div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:1px">HIDROVÍA · NIVEL</div><div style="font-size:13px;font-weight:500;margin-top:2px" id="dash-hidro-status">Consultando...</div></div></div>
++                                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><i class="fa-solid fa-water" style="font-size:24px;color:var(--accent)"></i><div><div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.5px">Hidrovía · nivel</div><div style="font-size:13px;font-weight:500;margin-top:2px" id="dash-hidro-status">Consultando...</div></div></div>
+                                 <div style="display:flex;gap:16px;margin-top:10px">
+                                     <div style="font-size:11px;color:var(--text-secondary)"><span style="font-weight:600">ASU</span> <span id="dash-h-asu">--</span></div>
+                                     <div style="font-size:11px;color:var(--text-secondary)"><span style="font-weight:600">PIL</span> <span id="dash-h-pir">--</span></div>
+@@ -236,23 +234,23 @@
+                             </div>
+                         </div>
+                         <!-- Vessel Cards Grid -->
+-                        <div class="section-title" style="display:flex;align-items:center;justify-content:space-between"><span>Embarcaciones Recientes</span><span style="font-size:11px;color:var(--accent);cursor:pointer" onclick="navigate('fleet')">Ver todas →</span></div>
+-                        <div id="dash-vessels" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
++                        <div class="section-title" style="display:flex;align-items:center;justify-content:space-between"><span>Atención Requerida</span><span style="font-size:11px;color:var(--accent);cursor:pointer" onclick="navigate('fleet')">Ver toda la flota →</span></div>
++                        <div id="dash-vessels" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div><div class="empty-state" id="dash-vessels-empty" style="display:none;padding:24px 12px"><i class="fa-regular fa-circle-check" style="font-size:22px"></i><p style="font-size:12px">Toda la flota operativa. Sin unidades que requieran atención.</p></div>
+                         <!-- Dashboard Mini Charts -->
+                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+                             <div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:14px;padding:16px">
+                                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+-                                    <div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:1px">COMBUSTIBLE · 7 DÍAS</div>
++                                    <div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.5px">Combustible · 7 días</div>
+                                     <i class="fa-solid fa-gas-pump" style="font-size:12px;color:var(--accent);opacity:0.5"></i>
+                                 </div>
+-                                <canvas id="dash-fuel-trend" height="100"></canvas>
++                                <canvas id="dash-fuel-trend" height="100"></canvas><div class="empty-state empty-state-compact" id="dash-fuel-trend-empty" style="display:none"><i class="fa-solid fa-gas-pump"></i><p>Todavía no hay cargas suficientes para graficar la tendencia.</p></div>
+                             </div>
+                             <div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:14px;padding:16px">
+                                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+-                                    <div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:1px">FLOTA · UTILIZACIÓN</div>
++                                    <div style="font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.5px">Flota · utilización</div>
+                                     <i class="fa-solid fa-chart-pie" style="font-size:12px;color:var(--success);opacity:0.5"></i>
+                                 </div>
+-                                <canvas id="dash-fleet-util" height="100"></canvas>
++                                <canvas id="dash-fleet-util" height="100"></canvas><div class="empty-state empty-state-compact" id="dash-fleet-util-empty" style="display:none"><i class="fa-solid fa-ship"></i><p>Registrá tu primera embarcación para ver esta métrica.</p></div>
+                             </div>
+                         </div>
+                         <!-- Activity feed -->
+@@ -270,12 +268,12 @@
+                         <div id="dash-live-vessels" style="display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto"></div>
+                         <!-- Selected vessel detail -->
+                         <div id="dash-vessel-detail" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--separator)">
+-                            <div style="font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:8px">SELECCIONADA · <span id="dash-sel-imo">--</span></div>
++                            <div style="font-size:10px;font-weight:600;letter-spacing:0.5px;color:var(--text-secondary);margin-bottom:8px">Seleccionada · <span id="dash-sel-imo">--</span></div>
+                             <div style="font-size:18px;font-weight:700;color:var(--text-primary)" id="dash-sel-name">--</div>
+                             <div style="font-size:11px;color:var(--text-secondary);margin-top:2px" id="dash-sel-route">--</div>
+                             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+-                                <div style="text-align:center"><div style="font-size:10px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px">CONVOY</div><div style="font-size:16px;font-weight:700;margin-top:2px" id="dash-sel-convoy">--</div></div>
+-                                <div style="text-align:center"><div style="font-size:10px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px">COMBUSTIBLE</div><div style="font-size:16px;font-weight:700;margin-top:2px" id="dash-sel-fuel">--%</div></div>
++                                <div style="text-align:center"><div style="font-size:10px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px">Convoy</div><div style="font-size:16px;font-weight:700;margin-top:2px" id="dash-sel-convoy">--</div></div>
++                                <div style="text-align:center"><div style="font-size:10px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px">Combustible</div><div style="font-size:16px;font-weight:700;margin-top:2px" id="dash-sel-fuel">--%</div></div>
+                                 <div style="text-align:center"><div style="font-size:10px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px">ETA</div><div style="font-size:16px;font-weight:700;margin-top:2px" id="dash-sel-eta">--</div></div>
+                             </div>
+                             <div style="display:flex;gap:8px;margin-top:12px">
+@@ -294,9 +292,9 @@
+             <!-- FLEET -->
+             <div class="view" id="view-fleet">
+                 <div class="fleet-page-header"><div><div class="viabarcazas-title">Gestión de <em>Flota.</em></div><div class="viabarcazas-subtitle">CONTROL DE ACTIVOS · FLOTA OPERATIVA</div></div><div class="header-actions"><button class="btn-export" onclick="exportFleet('pdf')" title="Exportar PDF"><i class="fa-solid fa-file-pdf"></i><span>PDF</span></button><button class="btn-export" onclick="exportFleet('excel')" title="Exportar Excel"><i class="fa-solid fa-file-excel"></i><span>Excel</span></button><button class="btn-primary" onclick="openModal('fleet')"><i class="fa-solid fa-plus"></i> Agregar activo</button></div></div>
+-                <div class="fleet-stat-row"><div class="fleet-stat-cell fleet-stat-total"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-ship"></i></span><span class="fleet-stat-kicker">INVENTARIO</span></div><div class="stat-val" id="fleet-total">0</div><div class="stat-lbl">Total de activos</div></div><div class="fleet-stat-cell fleet-stat-service"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-signal"></i></span><span class="fleet-stat-kicker">OPERACIÓN</span></div><div class="stat-val" id="fleet-service">0</div><div class="stat-lbl">En servicio</div></div><div class="fleet-stat-cell fleet-stat-dock"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-anchor"></i></span><span class="fleet-stat-kicker">MANTENIMIENTO</span></div><div class="stat-val" id="fleet-dock">0</div><div class="stat-lbl">En dique o taller</div></div></div>
+-                <div class="fleet-empty-state" id="fleet-empty-state"><div class="fleet-empty-icon"><i class="fa-solid fa-ship"></i></div><div><div class="fleet-empty-kicker">FLOTA TODAVÍA SIN REGISTROS</div><h2>Empezá por registrar tu primer activo</h2><p>Agregá un remolcador, barcaza o embarcación para habilitar el seguimiento operativo y la distribución de tu flota.</p></div><button class="btn-primary" onclick="openModal('fleet')"><i class="fa-solid fa-plus"></i> Registrar embarcación</button></div>
+-                <div class="fleet-section-heading" id="fleet-analytics-heading"><div><span class="fleet-section-kicker">LECTURA OPERATIVA</span><h2>Composición de la flota</h2></div><span class="fleet-updated"><i class="fa-regular fa-circle-check"></i> Datos sincronizados</span></div>
++                <div class="fleet-stat-row"><div class="fleet-stat-cell fleet-stat-total"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-ship"></i></span><span class="fleet-stat-kicker">Inventario</span></div><div class="stat-val" id="fleet-total">0</div><div class="stat-lbl">Total de activos</div></div><div class="fleet-stat-cell fleet-stat-service"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-signal"></i></span><span class="fleet-stat-kicker">Operación</span></div><div class="stat-val" id="fleet-service">0</div><div class="stat-lbl">En servicio</div></div><div class="fleet-stat-cell fleet-stat-dock"><div class="fleet-stat-top"><span class="fleet-stat-icon"><i class="fa-solid fa-anchor"></i></span><span class="fleet-stat-kicker">Mantenimiento</span></div><div class="stat-val" id="fleet-dock">0</div><div class="stat-lbl">En dique o taller</div></div></div>
++                <div class="fleet-empty-state" id="fleet-empty-state"><div class="fleet-empty-icon"><i class="fa-solid fa-ship"></i></div><div><div class="fleet-empty-kicker">Flota todavía sin registros</div><h2>Empezá por registrar tu primer activo</h2><p>Agregá un remolcador, barcaza o embarcación para habilitar el seguimiento operativo y la distribución de tu flota.</p></div><button class="btn-primary" onclick="openModal('fleet')"><i class="fa-solid fa-plus"></i> Registrar embarcación</button></div>
++                <div class="fleet-section-heading" id="fleet-analytics-heading"><div><span class="fleet-section-kicker">Lectura operativa</span><h2>Composición de la flota</h2></div><span class="fleet-updated"><i class="fa-regular fa-circle-check"></i> Datos sincronizados</span></div>
+                 <div class="fleet-charts-row" id="fleet-charts-row">
+                     <div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:14px;padding:20px">
+                         <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:14px">Distribución por estado</div>
+@@ -307,7 +305,7 @@
+                         <div style="height:180px"><canvas id="fleet-type-chart"></canvas></div>
+                     </div>
+                 </div>
+-                <div class="fleet-section-heading fleet-assets-heading"><div><span class="fleet-section-kicker">ACTIVOS REGISTRADOS</span><h2>Embarcaciones de la flota</h2></div><span class="fleet-updated" id="fleet-assets-count">0 activos</span></div>
++                <div class="fleet-section-heading fleet-assets-heading"><div><span class="fleet-section-kicker">Activos registrados</span><h2>Embarcaciones de la flota</h2></div><span class="fleet-updated" id="fleet-assets-count">0 activos</span></div>
+                 <table class="data-table"><thead><tr><th>EMBARCACIÓN</th><th>TIPO</th><th>ESTADO</th><th>UBICACIÓN</th></tr></thead><tbody id="fleet-tbody"></tbody></table>
+             </div>
+             <!-- COPILOTO -->
+@@ -351,7 +349,7 @@
+                 </div>
+ 
+                 <!-- CHAT -->
+-                <div style="margin-top:20px;font-size:11px;font-weight:600;color:var(--text-secondary);letter-spacing:1px;text-transform:uppercase;">Asistente Conversacional</div>
++                <div style="margin-top:20px;font-size:11px;font-weight:600;color:var(--text-secondary);letter-spacing:0.5px;">Asistente Conversacional</div>
+                 <div style="position:relative;margin-top:8px;border-radius:10px;overflow:hidden;background:var(--surface-low);">
+                     <svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.10;pointer-events:none;">
+                         <ellipse cx="200" cy="110" rx="150" ry="150" fill="none" stroke="#25D366" stroke-width="1"/>
+@@ -393,12 +391,12 @@
+                 </div>
+ 
+                 <div style="margin-top:20px">
+-                    <div class="convoy-remolcador"><i class="fa-regular fa-clone"></i> REMOLCADOR (Proa)</div>
+-                    <div style="margin:8px 0;font-size:10px;color:var(--text-secondary);text-align:center;letter-spacing:1px;">BARCAZAS</div>
++                    <div class="convoy-remolcador"><i class="fa-regular fa-clone"></i> Remolcador (Proa)</div>
++                    <div style="margin:8px 0;font-size:10px;color:var(--text-secondary);text-align:center;letter-spacing:0.5px;">Barcazas</div>
+                     <div class="convoy-grid"><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F1-P1</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F1-P2</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F1-P3</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F1-P4</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F2-P1</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F2-P2</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F2-P3</div><div class="convoy-slot"><i class="fa-regular fa-clone"></i>F2-P4</div></div>
+-                    <div class="convoy-remolcador" style="margin-top:8px"><i class="fa-regular fa-clone"></i> REMOLCADOR (Popa)</div>
++                    <div class="convoy-remolcador" style="margin-top:8px"><i class="fa-regular fa-clone"></i> Remolcador (Popa)</div>
+                 </div>
+-                <div class="viabarcazas-subtitle" style="margin-top:24px">FLOTA DISPONIBLE</div>
++                <div class="viabarcazas-subtitle" style="margin-top:24px;text-transform:none">Flota disponible</div>
+                 <div class="fleet-chips" id="convoy-chips"></div>
+             </div>
+             <!-- VIAJES -->
+@@ -410,10 +408,10 @@
+             <!-- BITACORA -->
+             <div class="view" id="view-bitacora">
+                 <div class="view-header logbook-page-header"><div><div class="viabarcazas-title">Bitácora<br><em>Digital.</em></div><div class="viabarcazas-subtitle">REGISTRO OPERATIVO - HISTORIAL</div></div><div class="header-actions"><button class="btn-export" onclick="exportBitacora('pdf')" title="Exportar PDF"><i class="fa-solid fa-file-pdf"></i></button><button class="btn-export" onclick="exportBitacora('excel')" title="Exportar Excel"><i class="fa-solid fa-file-excel"></i></button><button class="btn-primary" onclick="openModal('bitacora')"><i class="fa-solid fa-plus"></i> Nueva entrada</button></div></div>
+-                <div class="stat-row logbook-stat-row"><div class="stat-cell logbook-stat-cell logbook-stat-total"><span class="logbook-stat-kicker">HISTORIAL</span><div class="stat-val" id="bit-total">0</div><div class="stat-lbl">Entradas registradas</div></div><div class="stat-cell logbook-stat-cell logbook-stat-today"><span class="logbook-stat-kicker">ACTIVIDAD</span><div class="stat-val" id="bit-today">0</div><div class="stat-lbl">Entradas de hoy</div></div><div class="stat-cell logbook-stat-cell logbook-stat-categories"><span class="logbook-stat-kicker">COBERTURA</span><div class="stat-val" id="bit-categories">0</div><div class="stat-lbl">Categorías operativas</div></div></div>
+-                <div class="logbook-search search-wrapper"><i class="fa-solid fa-magnifying-glass"></i><input class="search-bar" id="bit-search" placeholder="Buscar por embarcación, tipo o descripción..." oninput="filterBitacora()"><span class="logbook-search-hint">ÚLTIMAS 30 ENTRADAS</span></div>
+-                <div class="logbook-list-heading"><div><span class="logbook-section-kicker">TRAZABILIDAD OPERATIVA</span><h2>Actividad reciente</h2></div><span class="logbook-list-note"><i class="fa-solid fa-clock-rotate-left"></i> Más recientes primero</span></div>
+-                <div id="bitacora-list"></div><div class="logbook-empty-state" id="bitacora-empty"><div class="logbook-empty-icon"><i class="fa-solid fa-book-open"></i></div><div><span class="logbook-section-kicker">HISTORIAL LIMPIO</span><h2>Sin entradas registradas</h2><p>Agregá una observación para dejar constancia de la operación y facilitar el seguimiento.</p></div><button class="btn-primary" onclick="openModal('bitacora')"><i class="fa-solid fa-plus"></i> Nueva entrada</button></div>
++                <div class="stat-row logbook-stat-row"><div class="stat-cell logbook-stat-cell logbook-stat-total"><span class="logbook-stat-kicker">Historial</span><div class="stat-val" id="bit-total">0</div><div class="stat-lbl">Entradas registradas</div></div><div class="stat-cell logbook-stat-cell logbook-stat-today"><span class="logbook-stat-kicker">Actividad</span><div class="stat-val" id="bit-today">0</div><div class="stat-lbl">Entradas de hoy</div></div><div class="stat-cell logbook-stat-cell logbook-stat-categories"><span class="logbook-stat-kicker">Cobertura</span><div class="stat-val" id="bit-categories">0</div><div class="stat-lbl">Categorías operativas</div></div></div>
++                <div class="logbook-search search-wrapper"><i class="fa-solid fa-magnifying-glass"></i><input class="search-bar" id="bit-search" placeholder="Buscar por embarcación, tipo o descripción..." oninput="filterBitacora()"><span class="logbook-search-hint">Últimas 30 entradas</span></div>
++                <div class="logbook-list-heading"><div><span class="logbook-section-kicker">Trazabilidad operativa</span><h2>Actividad reciente</h2></div><span class="logbook-list-note"><i class="fa-solid fa-clock-rotate-left"></i> Más recientes primero</span></div>
++                <div id="bitacora-list"></div><div class="logbook-empty-state" id="bitacora-empty"><div class="logbook-empty-icon"><i class="fa-solid fa-book-open"></i></div><div><span class="logbook-section-kicker">Historial limpio</span><h2>Sin entradas registradas</h2><p>Agregá una observación para dejar constancia de la operación y facilitar el seguimiento.</p></div><button class="btn-primary" onclick="openModal('bitacora')"><i class="fa-solid fa-plus"></i> Nueva entrada</button></div>
+             </div>
+             <!-- COMUNICACIONES -->
+             <div class="view" id="view-comunicaciones">
+@@ -466,20 +464,20 @@
+             <!-- COMBUSTIBLE -->
+             <div class="view" id="view-combustible">
+                 <div class="fuel-page-header"><div><div class="viabarcazas-title">Bunker y <em>Combustible.</em></div><div class="viabarcazas-subtitle">GESTIÓN DE CONSUMO · CONTROL OPERATIVO</div></div><div class="header-actions"><button class="btn-export" onclick="exportFuel('pdf')" title="Exportar PDF"><i class="fa-solid fa-file-pdf"></i><span>PDF</span></button><button class="btn-export" onclick="exportFuel('excel')" title="Exportar Excel"><i class="fa-solid fa-file-excel"></i><span>Excel</span></button><button class="btn-primary" onclick="openModal('fuel')"><i class="fa-solid fa-plus"></i> Registrar carga</button></div></div>
+-                <div class="fuel-stat-row"><div class="fuel-stat-cell fuel-stat-loads"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-bolt"></i></span><span class="fuel-stat-kicker">ACTIVIDAD</span></div><div class="stat-val" id="fuel-count">0</div><div class="stat-lbl">Cargas registradas</div><div class="fuel-stat-foot">en el período actual</div></div><div class="fuel-stat-cell fuel-stat-volume"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-droplet"></i></span><span class="fuel-stat-kicker">VOLUMEN</span></div><div class="stat-val" id="fuel-total">0L</div><div class="stat-lbl">Consumo acumulado</div><div class="fuel-stat-foot">litros cargados</div></div><div class="fuel-stat-cell fuel-stat-efficiency"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-gauge-high"></i></span><span class="fuel-stat-kicker">RENDIMIENTO</span></div><div class="stat-val">--</div><div class="stat-lbl">Eficiencia operativa</div><div class="fuel-stat-foot">requiere datos de navegación</div></div></div>
++                <div class="fuel-stat-row"><div class="fuel-stat-cell fuel-stat-loads"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-bolt"></i></span><span class="fuel-stat-kicker">Actividad</span></div><div class="stat-val" id="fuel-count">0</div><div class="stat-lbl">Cargas registradas</div><div class="fuel-stat-foot">en el período actual</div></div><div class="fuel-stat-cell fuel-stat-volume"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-droplet"></i></span><span class="fuel-stat-kicker">Volumen</span></div><div class="stat-val" id="fuel-total">0L</div><div class="stat-lbl">Consumo acumulado</div><div class="fuel-stat-foot">litros cargados</div></div><div class="fuel-stat-cell fuel-stat-efficiency"><div class="fuel-stat-top"><span class="fuel-stat-icon"><i class="fa-solid fa-gauge-high"></i></span><span class="fuel-stat-kicker">Rendimiento</span></div><div class="stat-val">--</div><div class="stat-lbl">Eficiencia operativa</div><div class="fuel-stat-foot">requiere datos de navegación</div></div></div>
+                 <div class="fuel-reference" id="fuel-reference"></div>
+                 <div class="fuel-analytics-row" id="fuel-analytics-row">
+                     <div class="fuel-panel fuel-trend-panel">
+-                        <div class="fuel-panel-heading"><div><span class="fuel-panel-kicker">COMPORTAMIENTO</span><h2>Tendencia de consumo</h2><p>Litros cargados durante los últimos 7 días</p></div><span class="fuel-panel-badge"><i class="fa-solid fa-chart-line"></i> 7 días</span></div>
++                        <div class="fuel-panel-heading"><div><span class="fuel-panel-kicker">Comportamiento</span><h2>Tendencia de consumo</h2><p>Litros cargados durante los últimos 7 días</p></div><span class="fuel-panel-badge"><i class="fa-solid fa-chart-line"></i> 7 días</span></div>
+                         <div style="height:220px"><canvas id="fuel-trend-chart"></canvas></div>
+                     </div>
+                     <div class="fuel-panel fuel-insights-panel">
+-                        <div class="fuel-panel-heading"><div><span class="fuel-panel-kicker">LECTURA IA</span><h2><i class="fa-solid fa-lightbulb"></i> Insights y alertas</h2></div></div>
++                        <div class="fuel-panel-heading"><div><span class="fuel-panel-kicker">Lectura IA</span><h2><i class="fa-solid fa-lightbulb"></i> Insights y alertas</h2></div></div>
+                         <div id="fuel-insights" style="display:flex;flex-direction:column;gap:10px"></div>
+                     </div>
+                 </div>
+-                <div class="fuel-list-heading"><div><span class="fuel-panel-kicker">REGISTRO OPERATIVO</span><h2>Cargas recientes</h2></div><span class="fuel-list-note"><i class="fa-regular fa-clock"></i> Últimas 20 cargas</span></div>
+-                <div id="fuel-list"></div><div class="fuel-empty-state" id="fuel-empty"><div class="fuel-empty-icon"><i class="fa-solid fa-gas-pump"></i></div><div><span class="fuel-panel-kicker">SIN REGISTROS AÚN</span><h2>Registrá la primera carga de combustible</h2><p>Así vas a poder comparar consumo, detectar desvíos y seguir el costo operativo de la flota.</p></div><button class="btn-primary" onclick="openModal('fuel')"><i class="fa-solid fa-plus"></i> Registrar carga</button></div>
++                <div class="fuel-list-heading"><div><span class="fuel-panel-kicker">Registro operativo</span><h2>Cargas recientes</h2></div><span class="fuel-list-note"><i class="fa-regular fa-clock"></i> Últimas 20 cargas</span></div>
++                <div id="fuel-list"></div><div class="fuel-empty-state" id="fuel-empty"><div class="fuel-empty-icon"><i class="fa-solid fa-gas-pump"></i></div><div><span class="fuel-panel-kicker">Sin registros aún</span><h2>Registrá la primera carga de combustible</h2><p>Así vas a poder comparar consumo, detectar desvíos y seguir el costo operativo de la flota.</p></div><button class="btn-primary" onclick="openModal('fuel')"><i class="fa-solid fa-plus"></i> Registrar carga</button></div>
+             </div>
+             <!-- LIQUIDOS (TANQUES) -->
+             <div class="view" id="view-liquidos">
+@@ -490,8 +488,8 @@
+             <!-- MANTENIMIENTO -->
+             <div class="view" id="view-mantenimiento">
+                 <div class="maint-page-header"><div><div class="viabarcazas-title">Órdenes de <em>Mantenimiento.</em></div><div class="viabarcazas-subtitle">GESTIÓN PREVENTIVA · CORRECTIVA · CRÍTICA</div></div><div class="header-actions"><button class="btn-export" onclick="exportMaint('pdf')" title="Exportar PDF"><i class="fa-solid fa-file-pdf"></i><span>PDF</span></button><button class="btn-export" onclick="exportMaint('excel')" title="Exportar Excel"><i class="fa-solid fa-file-excel"></i><span>Excel</span></button><button class="btn-primary" onclick="openModal('maint')"><i class="fa-solid fa-plus"></i> Nueva orden</button></div></div>
+-                <div class="maint-stat-row"><div class="maint-stat-cell maint-stat-pending"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-clock"></i></span><span class="maint-stat-kicker">POR RESOLVER</span></div><div class="stat-val" id="maint-pending">0</div><div class="stat-lbl">Órdenes pendientes</div></div><div class="maint-stat-cell maint-stat-progress"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-spinner"></i></span><span class="maint-stat-kicker">EN TALLER</span></div><div class="stat-val" id="maint-progress">0</div><div class="stat-lbl">En progreso</div></div><div class="maint-stat-cell maint-stat-done"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-circle-check"></i></span><span class="maint-stat-kicker">RESULTADO</span></div><div class="stat-val" id="maint-done">0</div><div class="stat-lbl">Completadas</div></div></div>
+-                <div class="maint-list-heading"><div><span class="maint-section-kicker">SEGUIMIENTO OPERATIVO</span><h2>Órdenes recientes</h2></div><span class="maint-list-note"><i class="fa-solid fa-layer-group"></i> Vista por prioridad</span></div>
++                <div class="maint-stat-row"><div class="maint-stat-cell maint-stat-pending"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-clock"></i></span><span class="maint-stat-kicker">Por resolver</span></div><div class="stat-val" id="maint-pending">0</div><div class="stat-lbl">Órdenes pendientes</div></div><div class="maint-stat-cell maint-stat-progress"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-spinner"></i></span><span class="maint-stat-kicker">En taller</span></div><div class="stat-val" id="maint-progress">0</div><div class="stat-lbl">En progreso</div></div><div class="maint-stat-cell maint-stat-done"><div class="maint-stat-top"><span class="maint-stat-icon"><i class="fa-solid fa-circle-check"></i></span><span class="maint-stat-kicker">Resultado</span></div><div class="stat-val" id="maint-done">0</div><div class="stat-lbl">Completadas</div></div></div>
++                <div class="maint-list-heading"><div><span class="maint-section-kicker">Seguimiento operativo</span><h2>Órdenes recientes</h2></div><span class="maint-list-note"><i class="fa-solid fa-layer-group"></i> Vista por prioridad</span></div>
+                 <div id="maint-list"></div>
+             </div>
+             <!-- PANOL -->
+@@ -732,16 +730,17 @@
+                 <div class="viabarcazas-subtitle">ELIGE TU PLAN - HIDROVIA INTELIGENTE</div>
+                 <div class="plan-toggle" style="margin-top:20px">
+                     <span class="plan-period active" id="plan-monthly" onclick="togglePeriod('monthly')">Mensual</span>
+-                    <span class="plan-period" id="plan-yearly" onclick="togglePeriod('yearly')">Anual <small>-20%</small></span>
++                    <span class="plan-period" id="plan-yearly" onclick="togglePeriod('yearly')">Anual <small>-10%</small></span>
+                 </div>
+                 <div class="pricing-grid" id="pricing-grid">
+                     <div class="pricing-card">
+                         <div class="plan-icon"><i class="fa-solid fa-ship"></i></div>
+-                        <h3 class="plan-name">Starter</h3>
+-                        <p class="plan-desc">Hasta 5 embarcaciones — Control esencial de tu flota</p>
+-                        <div class="plan-price"><span class="plan-amount" data-monthly="149" data-yearly="119">$149</span><span class="plan-unit">/mes</span></div>
++                        <h3 class="plan-name">Amarre</h3>
++                        <p class="plan-desc">Por cada barcaza y remolcador — sin límite de embarcaciones</p>
++                        <div class="plan-price"><span class="plan-amount" data-monthly="120" data-yearly="108">$120</span><span class="plan-unit">/unidad/mes — desde</span></div>
+                         <ul class="plan-features">
+-                            <li><i class="fa-solid fa-check"></i>Hasta 5 embarcaciones</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>1–9 unidades: <span class="plan-amount" data-monthly="120" data-yearly="108">$120</span>/unidad/mes</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>10–24 unidades: <span class="plan-amount" data-monthly="110" data-yearly="99">$110</span>/unidad/mes</li>
+                             <li><i class="fa-solid fa-check"></i>Tracking AIS en tiempo real</li>
+                             <li><i class="fa-solid fa-check"></i>Bitácora digital</li>
+                             <li><i class="fa-solid fa-check"></i>Control de combustible</li>
+@@ -749,38 +748,40 @@
+                             <li class="feat-disabled"><i class="fa-solid fa-xmark"></i>Copiloto IA</li>
+                             <li class="feat-disabled"><i class="fa-solid fa-xmark"></i>Armador de convoyes</li>
+                         </ul>
+-                        <button class="plan-btn" onclick="selectPlan('starter')">Solicitar Demo</button>
++                        <button class="plan-btn" onclick="selectPlan('amarre')">Hablar con Ventas</button>
+                     </div>
+                     <div class="pricing-card popular">
+-                        <div class="plan-badge">MÁS POPULAR</div>
++                        <div class="plan-badge">MÁS ELEGIDO</div>
+                         <div class="plan-icon"><i class="fa-solid fa-anchor"></i></div>
+-                        <h3 class="plan-name">Profesional</h3>
+-                        <p class="plan-desc">Hasta 20 embarcaciones — Gestión integral de flota</p>
+-                        <div class="plan-price"><span class="plan-amount" data-monthly="499" data-yearly="399">$499</span><span class="plan-unit">/mes</span></div>
++                        <h3 class="plan-name">Convoy</h3>
++                        <p class="plan-desc">Por cada barcaza y remolcador — sin límite de embarcaciones</p>
++                        <div class="plan-price"><span class="plan-amount" data-monthly="100" data-yearly="90">$100</span><span class="plan-unit">/unidad/mes — desde</span></div>
+                         <ul class="plan-features">
+-                            <li><i class="fa-solid fa-check"></i>Hasta 20 embarcaciones</li>
+-                            <li><i class="fa-solid fa-check"></i>Todo de Starter</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>25–49 unidades: <span class="plan-amount" data-monthly="100" data-yearly="90">$100</span>/unidad/mes</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>50–99 unidades: <span class="plan-amount" data-monthly="92" data-yearly="83">$92</span>/unidad/mes</li>
++                            <li><i class="fa-solid fa-check"></i>Todo de Amarre</li>
+                             <li><i class="fa-solid fa-check"></i>Armador de convoyes</li>
+                             <li><i class="fa-solid fa-check"></i>Gestión de tripulación</li>
+                             <li><i class="fa-solid fa-check"></i>Pronóstico de hidrovía</li>
+                             <li><i class="fa-solid fa-check"></i>Copiloto IA</li>
+                         </ul>
+-                        <button class="plan-btn popular-btn" onclick="selectPlan('profesional')">Solicitar Demo</button>
++                        <button class="plan-btn popular-btn" onclick="selectPlan('convoy')">Hablar con Ventas</button>
+                     </div>
+                     <div class="pricing-card">
+                         <div class="plan-icon"><i class="fa-solid fa-building"></i></div>
+-                        <h3 class="plan-name">Enterprise</h3>
+-                        <p class="plan-desc">Embarcaciones ilimitadas — Solución corporativa a medida</p>
+-                        <div class="plan-price"><span class="plan-amount">Contactar</span><span class="plan-unit"></span></div>
++                        <h3 class="plan-name">Armador</h3>
++                        <p class="plan-desc">Flota corporativa — sin límite de embarcaciones</p>
++                        <div class="plan-price"><span class="plan-amount" data-monthly="85" data-yearly="77">$85</span><span class="plan-unit">/unidad/mes — desde</span></div>
+                         <ul class="plan-features">
+-                            <li><i class="fa-solid fa-check"></i>Embarcaciones ilimitadas</li>
+-                            <li><i class="fa-solid fa-check"></i>Todo de Profesional</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>100–149 unidades: <span class="plan-amount" data-monthly="85" data-yearly="77">$85</span>/unidad/mes</li>
++                            <li><i class="fa-solid fa-money-bill-wave"></i>150+ unidades: <strong>propuesta a medida</strong></li>
++                            <li><i class="fa-solid fa-check"></i>Todo de Convoy</li>
+                             <li><i class="fa-solid fa-check"></i>API e integraciones</li>
+                             <li><i class="fa-solid fa-check"></i>SLA 99.9% garantizado</li>
+                             <li><i class="fa-solid fa-check"></i>Soporte dedicado 24/7</li>
+                             <li><i class="fa-solid fa-check"></i>Onboarding personalizado</li>
+                         </ul>
+-                        <button class="plan-btn" onclick="selectPlan('enterprise')">Contactar Ventas</button>
++                        <button class="plan-btn" onclick="selectPlan('armador')">Contactar Ventas</button>
+                     </div>
+                 </div>
+                 <div class="plan-faq">
+diff --git a/public/viabarcazas.js b/public/viabarcazas.js
+index 943e52a..0494868 100644
+--- a/public/viabarcazas.js
++++ b/public/viabarcazas.js
+@@ -635,19 +635,41 @@ async function loadDashMiniCharts(vessels){
+             if(fuelByDay.hasOwnProperty(k))fuelByDay[k]+=(f.liters||0);
+         });
+         var fuelLabels=Object.keys(fuelByDay);var fuelValues=Object.values(fuelByDay);
++        // Antes se graficaba siempre, incluso en 0 (linea plana enganosa).
++        // Si no hay litros cargados en la ventana de 7 dias, mostramos un
++        // estado vacio explicito en vez de un grafico con datos falsos.
++        var fuelTotal7=fuelValues.reduce(function(a,b){return a+b},0);
+         var ctx1=document.getElementById('dash-fuel-trend');
+-        if(ctx1){
+-            if(dashFuelTrendChart)dashFuelTrendChart.destroy();
+-            dashFuelTrendChart=new Chart(ctx1,{type:'line',data:{labels:fuelLabels,datasets:[{data:fuelValues,borderColor:'#25D366',backgroundColor:'rgba(37,211,102,0.10)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#25D366',pointBorderColor:'#0F231C',pointBorderWidth:2,borderWidth:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toLocaleString()+' L'}}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.07)'},ticks:{color:'#A9B8B2',font:{size:9},callback:function(v){return v>999?(v/1000).toFixed(0)+'k':v}}},x:{grid:{display:false},ticks:{color:'#A9B8B2',font:{size:9},maxRotation:0}}}}});
++        var ctx1Empty=document.getElementById('dash-fuel-trend-empty');
++        if(fuelTotal7<=0){
++            if(ctx1)ctx1.style.display='none';
++            if(ctx1Empty)ctx1Empty.style.display='';
++        }else{
++            if(ctx1)ctx1.style.display='';
++            if(ctx1Empty)ctx1Empty.style.display='none';
++            if(ctx1){
++                if(dashFuelTrendChart)dashFuelTrendChart.destroy();
++                dashFuelTrendChart=new Chart(ctx1,{type:'line',data:{labels:fuelLabels,datasets:[{data:fuelValues,borderColor:'#25D366',backgroundColor:'rgba(37,211,102,0.10)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#25D366',pointBorderColor:'#0F231C',pointBorderWidth:2,borderWidth:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y.toLocaleString()+' L'}}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.07)'},ticks:{color:'#A9B8B2',font:{size:9},callback:function(v){return v>999?(v/1000).toFixed(0)+'k':v}}},x:{grid:{display:false},ticks:{color:'#A9B8B2',font:{size:9},maxRotation:0}}}}});
++            }
+         }
+     }catch(e){/* Fuel trend: */;}
+     try{
+         var active=0,docked=0,maint=0;
+         (vessels||[]).forEach(function(v){var s=(trad(v.status||'')).toLowerCase();if(s==='en viaje'||s==='active'||s==='activo'||s==='navegando'||s==='en_viaje')active++;else if(s.indexOf('manten')>=0)maint++;else docked++;});
+         var ctx2=document.getElementById('dash-fleet-util');
+-        if(ctx2){
+-            if(dashFleetUtilChart)dashFleetUtilChart.destroy();
+-            dashFleetUtilChart=new Chart(ctx2,{type:'doughnut',data:{labels:['Navegando','En Puerto','Mantenimiento'],datasets:[{data:[active,docked,maint],backgroundColor:['#34D399','#128C7E','#FBBF24'],borderWidth:0,borderRadius:4}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#A9B8B2',font:{family:'Manrope',size:10},padding:8,usePointStyle:true,pointStyleWidth:8}}}}});
++        var ctx2Empty=document.getElementById('dash-fleet-util-empty');
++        // Sin embarcaciones cargadas el donut queda vacio y confunde; se
++        // reemplaza por un estado vacio explicito (misma logica que Combustible arriba).
++        if((vessels||[]).length===0){
++            if(ctx2)ctx2.style.display='none';
++            if(ctx2Empty)ctx2Empty.style.display='';
++        }else{
++            if(ctx2)ctx2.style.display='';
++            if(ctx2Empty)ctx2Empty.style.display='none';
++            if(ctx2){
++                if(dashFleetUtilChart)dashFleetUtilChart.destroy();
++                dashFleetUtilChart=new Chart(ctx2,{type:'doughnut',data:{labels:['Navegando','En Puerto','Mantenimiento'],datasets:[{data:[active,docked,maint],backgroundColor:['#34D399','#128C7E','#FBBF24'],borderWidth:0,borderRadius:4}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'#A9B8B2',font:{family:'Manrope',size:10},padding:8,usePointStyle:true,pointStyleWidth:8}}}}});
++            }
+         }
+     }catch(e){/* Fleet util: */;}
+ }
+@@ -696,17 +718,30 @@ async function loadDashHydro(){
+     }catch(e){/* Hydro: */;}
+ }
+ 
++// Antes duplicaba la lista completa de "Embarcaciones" de la columna
++// derecha (mismo dato, mismo estado). Ahora resalta solo lo que necesita
++// atencion (mantenimiento), para que cada bloque del dashboard aporte
++// algo distinto. La columna derecha sigue siendo el navegador completo.
+ function loadDashRecentVessels(vessels){
+     var container=document.getElementById('dash-vessels');if(!container)return;
+-    container.innerHTML=vessels.slice(0,4).map(function(v){
++    var empty=document.getElementById('dash-vessels-empty');
++    var needsAttention=(vessels||[]).filter(function(v){
+         var s=(trad(v.status||'')).toLowerCase();
+-        var isActive=s==='en viaje'||s==='active'||s==='activo'||s==='navegando'||s==='en_viaje';
+-        var isMaint=s.indexOf('manten')>=0;
+-        var borderColor=isActive?'var(--success)':isMaint?'var(--warning)':'var(--accent)';
+-        return '<div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:12px;padding:14px;border-left:3px solid '+borderColor+'">'+
++        return s.indexOf('manten')>=0;
++    });
++    if(needsAttention.length===0){
++        container.innerHTML='';
++        container.style.display='none';
++        if(empty)empty.style.display='';
++        return;
++    }
++    container.style.display='grid';
++    if(empty)empty.style.display='none';
++    container.innerHTML=needsAttention.slice(0,4).map(function(v){
++        return '<div style="background:var(--bg-secondary);border:0.5px solid var(--separator);border-radius:12px;padding:14px;border-left:3px solid var(--warning)">'+
+             '<div style="font-size:13px;font-weight:600">'+(v.name||v.vessel_name||'')+'</div>'+
+             '<div style="font-size:11px;color:var(--text-secondary);margin-top:4px">'+(trad(v.type||v.vessel_type||''))+' · '+(v.location||v.current_position||'--')+'</div>'+
+-            '<div style="font-size:10px;margin-top:6px;color:'+borderColor+';font-weight:600">'+(v.status||'--').toUpperCase()+'</div></div>';
++            '<div style="font-size:10px;margin-top:6px;color:var(--warning);font-weight:600">'+(v.status||'--')+'</div></div>';
+     }).join('');
+ }
+ 
+@@ -1380,25 +1415,15 @@ function togglePeriod(period){
+         el.textContent='$'+val.toLocaleString('en-US');
+     });
+ }
+-var planNames={barcaza:'Por Barcaza',combo:'Combo Flota',enterprise:'Enterprise',ilimitado:'Ilimitado'};
+-var planPrices={barcaza:{monthly:149,yearly:119},combo:{monthly:899,yearly:719},enterprise:{monthly:1499,yearly:1199},ilimitado:{monthly:2499,yearly:1999}};
++// El checkout automatico via modal+processPayment quedo desconectado
++// del backend real de Stripe (que solo reconoce planes SOLIST/SQUAD/
++// EXPANSION/ADMIRAL, ver docs/). Hasta que se actualice ese backend,
++// estos botones abren un contacto directo en vez de simular un pago
++// que nunca se cobra de verdad.
++var planNames={amarre:'Amarre',convoy:'Convoy',armador:'Armador'};
+ function selectPlan(plan){
+-    var price=planPrices[plan][currentPeriod];
+-    var name=planNames[plan];
+-    document.getElementById('modal-title').textContent='Checkout - '+name;
+-    document.getElementById('modal-body').innerHTML='<div style="background:var(--surface-low);border-radius:12px;padding:20px;margin-bottom:16px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;font-weight:600">'+esc(name)+'</span><span style="font-family:Bricolage Grotesque,sans-serif;font-size:28px;font-weight:400">$'+price.toLocaleString('en-US')+'</span></div><p style="font-size:11px;color:var(--text-secondary);margin-top:4px">Facturacion '+(currentPeriod==='monthly'?'mensual':'anual')+' - 14 dias gratis</p></div><div style="text-align:center;padding:20px 0"><i class="fa-solid fa-lock" style="font-size:32px;color:var(--accent);margin-bottom:12px"></i><p style="font-size:14px;color:var(--text-primary);font-weight:600">Pago seguro via pasarela externa</p><p style="font-size:12px;color:var(--text-secondary);margin-top:8px">Al confirmar seras redirigido a la pasarela de pago segura para completar la transaccion.</p></div>';
+-    document.getElementById('modal-overlay').classList.add('open');
+-    document.getElementById('modal-submit').textContent='Contratar '+esc(name);
+-    document.getElementById('modal-submit').onclick=function(){processPayment(plan,price)};
+-}
+-async function processPayment(plan,price){
+-    document.getElementById('modal-submit').disabled=true;
+-    document.getElementById('modal-submit').textContent='Redirigiendo...';
+-    setTimeout(function(){
+-        document.getElementById('modal-body').innerHTML='<div style="text-align:center;padding:40px 0"><i class="fa-solid fa-envelope" style="font-size:48px;color:var(--accent)"></i><h3 style="font-family:Bricolage Grotesque,sans-serif;font-size:24px;margin-top:16px">Solicitud Enviada</h3><p style="color:var(--text-secondary);margin-top:8px">Nuestro equipo se pondra en contacto para activar tu plan <strong>'+esc(planNames[plan])+'</strong>.</p><p style="color:var(--text-secondary);font-size:12px;margin-top:4px">Recibirás un email con instrucciones de pago.</p></div>';
+-        document.getElementById('modal-submit').style.display='none';
+-        document.querySelector('.modal-actions .btn-secondary').textContent='Cerrar';
+-    },1500);
++    var name=planNames[plan]||'ViaBarcazas';
++    window.location.href='mailto:info@viabarcazas.com?subject='+encodeURIComponent('Consulta plan '+name+' - ViaBarcazas');
+ }
+ 
+ // ADMIN PANEL

@@ -1,0 +1,54 @@
+name: Compliance expiry alerts
+
+# ADENDA (12/9/2026, pedido de Pedro): el endpoint POST /api/whatsapp/daily-check
+# (routes/whatsappRoutes.js) ya recorre compliance_documents de todas las empresas
+# y manda WhatsApp por cada documento vencido o por vencer en <=30 dias -- pero
+# nada lo llamaba nunca. render.yaml no tiene un servicio "cron", no hay
+# setInterval en app.js, y no aparece en ningun workflow existente. Este
+# workflow es lo unico que faltaba: llamarlo todos los dias.
+#
+# Requiere un secret de repo llamado CRON_SECRET con el MISMO valor que la
+# variable de entorno CRON_SECRET configurada en Render para el servicio
+# "viabarcazas" (Settings > Secrets and variables > Actions en GitHub).
+
+on:
+  schedule:
+    # 12:00 UTC = ~09:00 en Paraguay (UTC-3). Ajustar el minuto/hora si se
+    # prefiere otro horario -- Pedro puede cambiarlo cuando quiera.
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  daily-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate secret configuration
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -Eeuo pipefail
+          if [ -z "$CRON_SECRET" ]; then
+            echo "CRON_SECRET no esta configurado en Settings > Secrets and variables > Actions."
+            echo "Tiene que ser el MISMO valor que CRON_SECRET en las env vars de Render."
+            exit 1
+          fi
+      - name: Trigger compliance daily-check
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -Eeuo pipefail
+          response=$(curl -sS -w "\n%{http_code}" -X POST \
+            "https://viabarcazas.com/api/whatsapp/daily-check" \
+            -H "x-cron-secret: $CRON_SECRET" \
+            -H "Content-Type: application/json")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+          echo "HTTP $http_code"
+          echo "$body"
+          if [ "$http_code" -ge 400 ]; then
+            echo "El endpoint devolvio un error."
+            exit 1
+          fi
