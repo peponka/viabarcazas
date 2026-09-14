@@ -179,6 +179,7 @@
         .price-card .price-desc{font-size:12px;color:var(--text2);margin-bottom:20px}
         .price-amount{font-family:'Bricolage Grotesque',sans-serif;font-size:42px;font-weight:400;color:var(--text)}
         .price-card.featured .price-amount{color:var(--accent)}
+        .price-period{font-size:14px;font-weight:600;color:var(--text2)}
         .price-unit{font-size:13px;color:var(--text2)}
         .price-list{list-style:none;margin:24px 0;padding:0}
         .price-list li{font-size:13px;padding:6px 0;display:flex;align-items:center;gap:8px}
@@ -1033,7 +1034,7 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
         <div class="section-tag">PRECIOS</div>
         <h2>Tres tamaños de flota,<br><em>un solo panel.</em></h2>
         <p style="color:var(--text2);font-size:16px;margin-top:16px;max-width:520px;margin-inline:auto;line-height:1.7">Empezá con lo que necesitás hoy. Escalá cuando tu operación crezca. Sin contratos largos, sin sorpresas.</p>
-        <a href="pricing.html" class="price-btn dark" style="display:inline-block;width:auto;margin-top:20px;padding-inline:24px">Calcula el precio exacto de tu flota</a>
+        <a href="pricing.html" class="price-btn dark" style="display:inline-block;width:auto;margin-top:24px;padding:18px 36px;font-size:16px;box-shadow:0 10px 28px rgba(11,119,105,0.35)">Calcula el precio exacto de tu flota →</a>
     </div>
 
     <!-- GARANTÍA STRIP -->
@@ -1046,8 +1047,8 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
     <div class="pricing-cards">
         <!-- AMARRE -->
         <div class="price-card reveal">
-            <h3>Amarre</h3>
-            <p class="price-desc">Hasta 5 embarcaciones</p>
+            <div class="price-amount">USD 600<span class="price-period">/mes</span></div>
+            <p class="price-desc">Ejemplo con 5 embarcaciones</p>
             <div style="margin:20px 0 8px">
                 <div style="font-size:15px;font-weight:700;color:var(--success);letter-spacing:0.5px">✦ PARA ARRANCAR</div>
                 <div style="font-size:13px;color:var(--text2);margin-top:4px">Salí del Excel y la radio esta semana</div>
@@ -1066,8 +1067,8 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
         <!-- CONVOY -->
         <div class="price-card featured reveal">
             <div class="price-badge">MÁS ELEGIDO</div>
-            <h3>Convoy</h3>
-            <p class="price-desc">Hasta 20 embarcaciones</p>
+            <div class="price-amount">USD 2,200<span class="price-period">/mes</span></div>
+            <p class="price-desc">Ejemplo con 20 embarcaciones</p>
             <div style="margin:20px 0 8px">
                 <div style="font-size:15px;font-weight:700;color:var(--accent);letter-spacing:0.5px">✦ TODA LA OPERACIÓN</div>
                 <div style="font-size:13px;color:var(--text2);margin-top:4px">Copiloto IA leyendo tus datos, no promedios</div>
@@ -1084,8 +1085,8 @@ document.addEventListener('DOMContentLoaded', function() { calculateROI(); });
 
         <!-- ARMADOR -->
         <div class="price-card reveal">
-            <h3>Armador</h3>
-            <p class="price-desc">Embarcaciones ilimitadas</p>
+            <div class="price-amount">A medida</div>
+            <p class="price-desc">Para flotas sin límite de embarcaciones</p>
             <div style="margin:20px 0 8px">
                 <div style="font-size:15px;font-weight:700;color:var(--accent);letter-spacing:0.5px">✦ FLOTA COMPLETA</div>
                 <div style="font-size:13px;color:var(--text2);margin-top:4px">Para armadores y operadores grandes</div>
@@ -2165,7 +2166,13 @@ document.addEventListener('DOMContentLoaded',function(){
         "¿Dónde funciona ViaBarcazas?": "Onde a ViaBarcazas funciona?",
         "Pensado para la Hidrovía Paraguay-Paraná: Paraguay, Argentina, Brasil, Uruguay y Bolivia. Disponible en español e inglés.": "Pensada para a Hidrovia Paraguai-Paraná: Paraguai, Argentina, Brasil, Uruguai e Bolívia. Disponível em espanhol e inglês.",
         "¿Qué nivel de soporte tiene cada plan?": "Que nível de suporte cada plano oferece?",
-        "Amarre: email en horario laboral. Convoy: respuesta prioritaria en menos de 4 horas. Armador: soporte 24/7 con un account manager asignado y SLA garantizado.": "Amarração: e-mail em horário comercial. Comboio: resposta prioritária em até 4 horas. Armador: suporte 24/7 com gerente de conta dedicado e SLA garantido."
+        "Amarre: email en horario laboral. Convoy: respuesta prioritaria en menos de 4 horas. Armador: soporte 24/7 con un account manager asignado y SLA garantizado.": "Amarração: e-mail em horário comercial. Comboio: resposta prioritária em até 4 horas. Armador: suporte 24/7 com gerente de conta dedicado e SLA garantido.",
+        "Calcula el precio exacto de tu flota →": "Calcule o preço exato da sua frota →",
+        "Ejemplo con 5 embarcaciones": "Exemplo com 5 embarcações",
+        "Ejemplo con 20 embarcaciones": "Exemplo com 20 embarcações",
+        "Para flotas sin límite de embarcaciones": "Para frotas sem limite de embarcações",
+        "A medida": "Sob medida",
+        "/mes": "/mês"
     });
 
     function translateTextNode(node) {
