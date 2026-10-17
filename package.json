@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.0.0",
-    "@supabase/supabase-js": "^2.103.3",
+    "@supabase/supabase-js": "^2.111.0",
     "cors": "^2.8.6",
     "csv-parse": "^7.0.2",
     "dotenv": "^17.3.1",
